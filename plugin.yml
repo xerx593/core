@@ -1,0 +1,119 @@
+main: src.ares.core.Main
+name: Core
+description: The Core Plugin for Ares Network.
+version: 0.1
+depends: [Votifier]
+commands:
+  tpall:
+    description: All players teleport to your location.
+  entities:
+    description: Clear living entities on all registered worlds.
+  reward:
+    description: Give a player a random reward.
+  event:
+    description: Change on-going server event.
+  purchase:
+    description: No
+  spectate:
+    description: Toggle spectator mode on PvP maps.
+  fake:
+    description: Send a fake message to all players.
+  lookup:
+    description: Inspect previous player punishments.
+    aliases: [search]
+  broadcast:
+    description: Share your livestream link with others.
+    aliases: [live, livestream, stream, streaming]
+  uuid:
+    description: Check another player's unique id.
+  ping:
+    description: Check server connection.
+  punish:
+    description: Punish a player.
+    aliases: [p]
+  afk:
+    aliases: [busy, away]
+    description: Toggle your status as busy.
+  fly:
+    description: Ability to fly in the sky.
+  head:
+    description: Give yourself a players head.
+  setgold:
+    description: Set a user's gold.
+  announce:
+    aliases: [a]
+    description: Announce a message to the server.
+  gold:
+    description: Check the amount of gold you own.
+  msg:
+    description: Send a private message to another player.
+  motd:
+    description: Change the motd of the server.
+  pos:
+    description: Teleport to specific coordinates.
+  rank:
+    description: Changes the rank of a player.
+  r:
+    aliases: [tell]
+    description: Reply to someone you were messaging with.
+  setspawn:
+    description: Set a new world spawn.
+  tp:
+    description: Teleport to other players.
+  tphere:
+    description: Teleport players to you.
+  vanish:
+    description: Become invisible to other players.
+  world:
+    description: Travel to other worlds.
+  blaze:
+    description: Combust randomly in particles.
+  gamemode:
+    aliases: [gm]
+    description: Change the gamemode of your player.
+  setgamemode:
+    description: Set another targets gamemode.
+  forcefield:
+    description: Set a forcefield around you that knocks everyone away! EVERYONE!
+  buildmode:
+    description: Set a builder into creative mode!
+  particle:
+    description: Gives the sender a particle effect!
+  addgold:
+    description: Add gold to a player.
+  removegold:
+    description: Remove gold from a player.
+  ban:
+    description: Prevent somebody from logging in to the server.
+  unban:
+    description: Remove a ban punishment.
+  mute:
+    description: Prevent somebody from chatting in the server.
+  unmute:
+    description: Remove a mute punishment.
+  warn:
+    description: Warn somebody who is not following the rules.
+  freeze:
+    description: Prevent somebody from walking around.
+  hub:
+    description: Teleport back to the hub.
+  kick:
+    description: Kick an online player.
+  kickall:
+    description: Kick all the players online.
+  secondrank:
+    description: Set a second rank for a player.
+  setmode:
+    description: Change the mode of the server.
+  setversion:
+    description: Change the version of the server.
+  ambrosia:
+    description: Check the amount of ambrosia you own.
+  setambrosia:
+    description: Set the ambrosia of a player.
+  addambrosia:
+    description: Add ambrosia to a player.
+  removeambrosia:
+    description: Remove ambrosia from a player.
+  connect:
+    description: Connects to another server.
