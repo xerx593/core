@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import src.ares.core.client.Client;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.currency.CurrencyType;
 import src.ares.core.currency.type.AmbrosiaCurrency;
 import src.ares.core.currency.type.GoldCurrency;
@@ -60,7 +60,10 @@ public class MenuProgress extends Menu
 		GoldCurrency gold = new GoldCurrency(client.getManager().getCurrency(CurrencyType.GOLD));
 		AmbrosiaCurrency ambrosia = new AmbrosiaCurrency(client.getManager().getCurrency(CurrencyType.AMBROSIA));
 
-		AddDisplay(13, new CraftedItemStack(Material.COOKIE, "Account Balance", new String[] { ChatColor.YELLOW + "" + gold.getFormatted(), ChatColor.YELLOW + "" + ambrosia.getFormatted() }).pack());
+		AddDisplay(13, new CraftedItemStack(Material.COOKIE, "Account Balance", new String[]
+		{
+		ChatColor.YELLOW + "" + gold.getFormatted(), ChatColor.YELLOW + "" + ambrosia.getFormatted()
+		}).build());
 	}
 
 	private void showBattleInfo(Client client)
@@ -70,30 +73,42 @@ public class MenuProgress extends Menu
 			if (stats.getTitle() == "Total Deaths")
 			{
 				CraftedItemStack deaths = new CraftedItemStack(Material.ROTTEN_FLESH, stats.getTitle());
-				deaths.setLore(new String[] { ChatColor.YELLOW + "" + client.getManager().getStatistic(stats.getTitle()) + " " + stats.getTitle()});
+				deaths.lore(new String[]
+				{
+					ChatColor.YELLOW + "" + client.getManager().getStatistic(stats.getTitle()) + " " + stats.getTitle()
+				});
 
-				AddDisplay(28, deaths.pack());
+				AddDisplay(28, deaths.build());
 			}
 			else if (stats.getTitle() == "Total Kills")
 			{
 				CraftedItemStack kills = new CraftedItemStack(Material.FLINT_AND_STEEL, stats.getTitle());
-				kills.setLore(new String[] { ChatColor.YELLOW + "" + client.getManager().getStatistic(stats.getTitle()) + " " + stats.getTitle()});
+				kills.lore(new String[]
+				{
+					ChatColor.YELLOW + "" + client.getManager().getStatistic(stats.getTitle()) + " " + stats.getTitle()
+				});
 
-				AddDisplay(30, kills.pack());
+				AddDisplay(30, kills.build());
 			}
 			else if (stats.getTitle() == "Total Bow Hits")
 			{
 				CraftedItemStack kills = new CraftedItemStack(Material.BOW, stats.getTitle());
-				kills.setLore(new String[] { ChatColor.YELLOW + "" + client.getManager().getStatistic(stats.getTitle()) + " " + stats.getTitle() });
+				kills.lore(new String[]
+				{
+					ChatColor.YELLOW + "" + client.getManager().getStatistic(stats.getTitle()) + " " + stats.getTitle()
+				});
 
-				AddDisplay(32, kills.pack());
+				AddDisplay(32, kills.build());
 			}
 		}
 	}
 
 	private void showHighestKillstreak(Client client)
 	{
-		AddDisplay(34, new CraftedItemStack(Material.MINECART, "Highest Killstreak", new String[] { ChatColor.YELLOW + "" + Integer.toString(client.getManager().getKillstreak()) + " Killstreak" }).pack());
+		AddDisplay(34, new CraftedItemStack(Material.MINECART, "Highest Killstreak", new String[]
+		{
+			ChatColor.YELLOW + "" + Integer.toString(client.getManager().getKillstreak()) + " Killstreak"
+		}).build());
 	}
 
 	private void showMinutesPlayed(Client client)

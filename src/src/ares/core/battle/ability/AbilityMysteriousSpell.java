@@ -20,8 +20,8 @@ import org.bukkit.util.Vector;
 import src.ares.core.Main;
 import src.ares.core.battle.kit.Kit;
 import src.ares.core.client.Client;
-import src.ares.core.common.Cooldown;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.cooldown.Cooldown;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.common.util.Chat;
 import src.ares.core.world.WorldType;
 
@@ -118,7 +118,7 @@ public class AbilityMysteriousSpell extends Ability
 		if (!Cooldown.create(player, 10, getName(), true))
 		{
 			Vector dropsite = player.getLocation().getDirection().normalize().multiply(0.8);
-			Item item = player.getWorld().dropItem(player.getLocation().add(0, 1.5, 0), new CraftedItemStack(Material.EYE_OF_ENDER, getName()).addEnchantment(Enchantment.LUCK, 0, false).pack());
+			Item item = player.getWorld().dropItem(player.getLocation().add(0, 1.5, 0), new CraftedItemStack(Material.EYE_OF_ENDER, getName()).glow().build());
 			item.setVelocity(dropsite);
 
 			playEffect(item);

@@ -13,7 +13,7 @@ import src.ares.core.punish.Punishment;
 
 public class KickPunishment extends Punishment
 {
-	public KickPunishment(String reason, OfflineClient offender, OfflineClient punisher)
+	public KickPunishment(String reason, OfflineClient offender, Client punisher)
 	{
 		super("Kick Punishment", reason, offender, punisher);
 	}

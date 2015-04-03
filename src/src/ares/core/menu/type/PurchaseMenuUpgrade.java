@@ -2,6 +2,7 @@ package src.ares.core.menu.type;
 
 import src.ares.core.battle.upgrade.Upgrade;
 import src.ares.core.client.Client;
+import src.ares.core.currency.ICurrency;
 import src.ares.core.currency.type.GoldCurrency;
 import src.ares.core.menu.PurchaseMenu;
 
@@ -12,12 +13,12 @@ public class PurchaseMenuUpgrade extends PurchaseMenu
 	public PurchaseMenuUpgrade(Upgrade sellableUpgrade, GoldCurrency currencyCost)
 	{
 		super("Purchase Upgrade", sellableUpgrade.getDisplay(), currencyCost);
-		
+
 		this.upgrade = sellableUpgrade;
 	}
 
 	@Override
-	public void PurchaseProduct(GoldCurrency currency, Client client)
+	public void PurchaseProduct(ICurrency currency, Client client)
 	{
 		int level = client.getManager().getUpgradeLevel(upgrade);
 

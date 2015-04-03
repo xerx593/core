@@ -171,7 +171,7 @@ public class ServerDatabase extends Module
 
 	public synchronized boolean playerDataContainsPlayer(Player player)
 	{
-		//openConnection();
+		// openConnection();
 
 		try
 		{
@@ -193,13 +193,13 @@ public class ServerDatabase extends Module
 		}
 		finally
 		{
-			//closeConnection();
+			// closeConnection();
 		}
 	}
 
 	public void queryUpdate(String query)
 	{
-		//openConnection();
+		// openConnection();
 
 		PreparedStatement st = null;
 
@@ -274,7 +274,7 @@ public class ServerDatabase extends Module
 	 */
 	public void update(OfflinePlayer player)
 	{
-		//openConnection();
+		// openConnection();
 
 		OfflineClient client = new OfflineClient(player.getName());
 		String uuid = player.getUniqueId().toString();
@@ -296,7 +296,7 @@ public class ServerDatabase extends Module
 		}
 		finally
 		{
-			//closeConnection();
+			// closeConnection();
 		}
 	}
 

@@ -10,7 +10,7 @@ import src.ares.core.punish.TimedPunishment;
 
 public class MutePunishment extends TimedPunishment
 {
-	public MutePunishment(String reason, OfflineClient offender, OfflineClient punisher, double duration)
+	public MutePunishment(String reason, OfflineClient offender, Client punisher, double duration)
 	{
 		super("Mute Punishment", reason, offender, punisher, duration);
 	}

@@ -17,7 +17,10 @@ public class CommandPunish extends CoreCommand
 
 	public CommandPunish()
 	{
-		super("punish", new String[] { "p" }, 3, Rank.TRIAL_MOD, "<player> <duration> <reason>");
+		super("punish", new String[]
+		{
+			"p"
+		}, 3, Rank.TRIAL_MOD, "<player> <duration> <reason>");
 	}
 
 	@Override
@@ -33,7 +36,7 @@ public class CommandPunish extends CoreCommand
 			MenuPunish punish = new MenuPunish(punisher, offender, duration, reason);
 			punish.registerEvents();
 			punish.ShowPage(getClient().getPlayer());
-		
+
 			getClient().playSound(Sound.HORSE_SADDLE, 1.0F, 0.8F);
 		}
 		catch (IllegalArgumentException e)

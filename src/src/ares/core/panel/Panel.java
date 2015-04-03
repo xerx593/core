@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
+import src.ares.core.Main;
 import src.ares.core.common.Module;
-import src.ares.core.updater.UpdateEvent;
 
 public abstract class Panel extends Module
 {
@@ -25,7 +25,7 @@ public abstract class Panel extends Module
 
 	private ArrayList<Score> scores;
 
-	public Panel(Player player, String name, String objectiveName)
+	public Panel(final Player player, String name, String objectiveName)
 	{
 		super("Panel");
 
@@ -38,13 +38,33 @@ public abstract class Panel extends Module
 
 		assignAndClearScoreboard();
 		positionAndDisplayObjective();
+
+		BukkitRunnable updater = new BukkitRunnable()
+		{
+			@Override
+			public void run()
+			{
+				if (player == null)
+				{
+					cancel();
+				}
+
+				if (player.getScoreboard().equals(scoreboard))
+				{
+					scoreboardLines = lines;
+					resetScoreboardScores();
+					update();
+				}
+			}
+		};
+
+		updater.runTaskTimer(Main.getPlugin(), 0L, 20 * 2L);
 	}
 
 	/**
 	 * Adds a new Score to the player scoreboard objective.
 	 * 
-	 * @param display
-	 *            The display name of the Score.
+	 * @param display The display name of the Score.
 	 */
 	protected void addEntry(String display)
 	{
@@ -104,17 +124,5 @@ public abstract class Panel extends Module
 		}
 	}
 
-	public abstract void run();
-
-	@EventHandler
-	public void updateScoreboard(UpdateEvent event)
-	{
-		if (player.getScoreboard().equals(scoreboard))
-		{
-			this.scoreboardLines = lines; // We need that to reset the lines
-			                              // when we refresh.
-			resetScoreboardScores();
-			run();
-		}
-	}
+	public abstract void update();
 }

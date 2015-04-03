@@ -8,13 +8,17 @@ import org.bukkit.entity.Player;
 
 import src.ares.core.battle.ability.AbilityConfusion;
 import src.ares.core.battle.ability.AbilityWaterDrift;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedEnchantment;
+import src.ares.core.common.crafted.CraftedItemStack;
 
 public class KitPoseidon extends Kit
 {
 	public KitPoseidon()
 	{
-		super("Poseidon Kit", new String[] { ChatColor.WHITE + "Feel the power of the sea", ChatColor.WHITE + "and confuse your enemies." }, 7_000, ChatColor.BLUE, Color.BLUE);
+		super("Poseidon Kit", new String[]
+		{
+		ChatColor.WHITE + "Feel the power of the sea", ChatColor.WHITE + "and confuse your enemies."
+		}, 7_000, ChatColor.BLUE, Color.BLUE);
 
 		addAbility(new AbilityConfusion(this));
 		addAbility(new AbilityWaterDrift(this));
@@ -30,17 +34,17 @@ public class KitPoseidon extends Kit
 	public void addItems()
 	{
 		CraftedItemStack axe = new CraftedItemStack(Material.IRON_SPADE, ChatColor.YELLOW + "Poseidon Trident");
-		axe.setUnbreakable(true);
-		addItemStack(axe.pack());
+		axe.unbreakable(true);
+		addItemStack(axe.build());
 
 		CraftedItemStack bow = new CraftedItemStack(Material.BOW);
-		bow.addEnchantment(Enchantment.DAMAGE_ALL, 1, false);
-		bow.setUnbreakable(true);
-		addItemStack(bow.pack());
+		bow.enchantment(new CraftedEnchantment(Enchantment.DAMAGE_ALL, 1, false));
+		bow.unbreakable(true);
+		addItemStack(bow.build());
 
 		CraftedItemStack arrow = new CraftedItemStack(Material.ARROW);
-		arrow.setAmount(30);
-		addItemStack(arrow.pack());
+		arrow.amount(30);
+		addItemStack(arrow.build());
 
 		addSoups(3);
 	}

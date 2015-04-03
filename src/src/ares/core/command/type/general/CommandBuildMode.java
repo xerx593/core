@@ -19,7 +19,7 @@ public class CommandBuildMode extends CoreCommand
 	public CommandBuildMode()
 	{
 		super("buildmode", new String[] {}, 0, Rank.BUILDER);
-		
+
 		setDisabled(true);
 	}
 

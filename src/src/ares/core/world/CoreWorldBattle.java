@@ -48,7 +48,7 @@ public class CoreWorldBattle extends CoreWorld
 		setInteract(false);
 		setInventory(false);
 		setItemDrop(true);
-		
+
 		setDeathDrops(true);
 		setItemDrop(true);
 		lockTime(TimeState.DAY);

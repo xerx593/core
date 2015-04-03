@@ -80,7 +80,6 @@ public class PunishmentAuth extends Module
 		{
 			client.sendMessage(getModuleName(), "You cannot use commands while muted.");
 			e.setCancelled(true);
-			client.playSound(Sound.PISTON_RETRACT, 0.5F, 0.6F);
 		}
 	}
 

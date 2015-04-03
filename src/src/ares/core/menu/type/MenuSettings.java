@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import src.ares.core.Main;
 import src.ares.core.client.Client;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.menu.Menu;
 import src.ares.core.settings.Setting;
 import src.ares.core.settings.SettingsManager;
@@ -73,7 +73,7 @@ public class MenuSettings extends Menu
 		for (Setting setting : SettingsManager.getInstance().getSettingBag())
 		{
 			Main.debug("Adding " + setting.getName() + ".");
-			AddDisplay(displays++, new CraftedItemStack(setting.getDisplay(), setting.getName()).pack());
+			AddDisplay(displays++, new CraftedItemStack(setting.getDisplay(), setting.getName()).build());
 			displays++;
 
 			if (client.compareWith(setting.getRank()) || client.compareSecondWith(setting.getRank()))
@@ -101,7 +101,7 @@ public class MenuSettings extends Menu
 	{
 		for (int i = 0; i < getSlots(); i++)
 		{
-			AddDisplay(i, new CraftedItemStack(Material.STAINED_GLASS_PANE, "Under Development").pack());
+			AddDisplay(i, new CraftedItemStack(Material.STAINED_GLASS_PANE, "Under Development").build());
 		}
 	}
 }

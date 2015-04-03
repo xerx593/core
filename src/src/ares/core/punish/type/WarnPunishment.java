@@ -10,7 +10,7 @@ import src.ares.core.punish.Punishment;
 
 public class WarnPunishment extends Punishment
 {
-	public WarnPunishment(String reason, OfflineClient offender, OfflineClient punisher)
+	public WarnPunishment(String reason, OfflineClient offender, Client punisher)
 	{
 		super("Warn Punishment", reason, offender, punisher);
 	}
@@ -22,7 +22,7 @@ public class WarnPunishment extends Punishment
 			return;
 
 		Client offender = new Client(Bukkit.getPlayer(getOffender().getName()));
-		
+
 		if (offender != null)
 		{
 			offender.playSound(Sound.ITEM_BREAK, 1.0F, 1.3F);

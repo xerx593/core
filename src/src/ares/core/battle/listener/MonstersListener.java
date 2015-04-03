@@ -33,10 +33,11 @@ public class MonstersListener extends Module
 		return instance;
 	}
 
-	private EntityType[] entities = {
-		EntityType.ZOMBIE, EntityType.SKELETON, EntityType.SPIDER, EntityType.CREEPER, EntityType.WITCH, EntityType.SILVERFISH
+	private EntityType[] entities =
+	{
+	EntityType.ZOMBIE, EntityType.SKELETON, EntityType.SPIDER, EntityType.CREEPER, EntityType.WITCH, EntityType.SILVERFISH
 	};
-	
+
 	private Random random = new Random();
 	private HashMap<World, Integer> tasks = new HashMap<>();
 	private HashMap<World, Boolean> started = new HashMap<>();
@@ -163,7 +164,7 @@ public class MonstersListener extends Module
 	{
 		if (world == null)
 			return;
-		
+
 		if (started.get(world))
 		{
 			Main.debug("Stopping " + world.getName() + ".");

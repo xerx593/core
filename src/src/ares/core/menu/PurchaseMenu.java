@@ -8,15 +8,21 @@ import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.ItemStack;
 
 import src.ares.core.client.Client;
-import src.ares.core.common.item.CraftedItemStack;
-import src.ares.core.currency.type.GoldCurrency;
+import src.ares.core.common.crafted.CraftedItemStack;
+import src.ares.core.currency.ICurrency;
 
 public abstract class PurchaseMenu extends Menu
 {
 	private ItemStack item;
-	private GoldCurrency currency;
+	private ICurrency currency;
 
-	public PurchaseMenu(String menuName, ItemStack sellableItem, GoldCurrency currencyType)
+	private Material cancelBlock = Material.REDSTONE_BLOCK;
+	private String cancelButton = ChatColor.RED + "" + ChatColor.BOLD + "Cancel";
+
+	private Material purchaseBlock = Material.EMERALD_BLOCK;
+	private String purchaseButton = ChatColor.GREEN + "" + ChatColor.BOLD + "Purchase";
+
+	public PurchaseMenu(String menuName, ItemStack sellableItem, ICurrency currencyType)
 	{
 		super(Material.STONE, menuName, 54);
 
@@ -26,30 +32,32 @@ public abstract class PurchaseMenu extends Menu
 		DependOnEvents(true);
 	}
 
-	private void AddCancelButton()
+	private void addPurchaseButtons()
 	{
-		AddDisplay(33, new CraftedItemStack(Material.REDSTONE_BLOCK, ChatColor.RED + "" + ChatColor.BOLD + "Cancel").pack());
-		AddDisplay(34, new CraftedItemStack(Material.REDSTONE_BLOCK, ChatColor.RED + "" + ChatColor.BOLD + "Cancel").pack());
-		AddDisplay(35, new CraftedItemStack(Material.REDSTONE_BLOCK, ChatColor.RED + "" + ChatColor.BOLD + "Cancel").pack());
-		AddDisplay(42, new CraftedItemStack(Material.REDSTONE_BLOCK, ChatColor.RED + "" + ChatColor.BOLD + "Cancel").pack());
-		AddDisplay(43, new CraftedItemStack(Material.REDSTONE_BLOCK, ChatColor.RED + "" + ChatColor.BOLD + "Cancel").pack());
-		AddDisplay(44, new CraftedItemStack(Material.REDSTONE_BLOCK, ChatColor.RED + "" + ChatColor.BOLD + "Cancel").pack());
-		AddDisplay(51, new CraftedItemStack(Material.REDSTONE_BLOCK, ChatColor.RED + "" + ChatColor.BOLD + "Cancel").pack());
-		AddDisplay(52, new CraftedItemStack(Material.REDSTONE_BLOCK, ChatColor.RED + "" + ChatColor.BOLD + "Cancel").pack());
-		AddDisplay(53, new CraftedItemStack(Material.REDSTONE_BLOCK, ChatColor.RED + "" + ChatColor.BOLD + "Cancel").pack());
-	}
+		String cost = ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted();
 
-	private void AddPurchaseButton()
+		AddDisplay(29, new CraftedItemStack(purchaseBlock, purchaseButton, cost).build());
+		AddDisplay(28, new CraftedItemStack(purchaseBlock, purchaseButton, cost).build());
+		AddDisplay(27, new CraftedItemStack(purchaseBlock, purchaseButton, cost).build());
+		AddDisplay(36, new CraftedItemStack(purchaseBlock, purchaseButton, cost).build());
+		AddDisplay(37, new CraftedItemStack(purchaseBlock, purchaseButton, cost).build());
+		AddDisplay(38, new CraftedItemStack(purchaseBlock, purchaseButton, cost).build());
+		AddDisplay(45, new CraftedItemStack(purchaseBlock, purchaseButton, cost).build());
+		AddDisplay(46, new CraftedItemStack(purchaseBlock, purchaseButton, cost).build());
+		AddDisplay(47, new CraftedItemStack(purchaseBlock, purchaseButton, cost).build());
+	}
+	
+	private void addCancelButtons()
 	{
-		AddDisplay(29, new CraftedItemStack(Material.EMERALD_BLOCK, ChatColor.GREEN + "" + ChatColor.BOLD + "Purchase " + item.getItemMeta().getDisplayName(), new String[] { ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted() }).pack());
-		AddDisplay(28, new CraftedItemStack(Material.EMERALD_BLOCK, ChatColor.GREEN + "" + ChatColor.BOLD + "Purchase " + item.getItemMeta().getDisplayName(), new String[] { ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted() }).pack());
-		AddDisplay(27, new CraftedItemStack(Material.EMERALD_BLOCK, ChatColor.GREEN + "" + ChatColor.BOLD + "Purchase " + item.getItemMeta().getDisplayName(), new String[] { ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted() }).pack());
-		AddDisplay(36, new CraftedItemStack(Material.EMERALD_BLOCK, ChatColor.GREEN + "" + ChatColor.BOLD + "Purchase " + item.getItemMeta().getDisplayName(), new String[] { ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted() }).pack());
-		AddDisplay(37, new CraftedItemStack(Material.EMERALD_BLOCK, ChatColor.GREEN + "" + ChatColor.BOLD + "Purchase " + item.getItemMeta().getDisplayName(), new String[] { ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted() }).pack());
-		AddDisplay(38, new CraftedItemStack(Material.EMERALD_BLOCK, ChatColor.GREEN + "" + ChatColor.BOLD + "Purchase " + item.getItemMeta().getDisplayName(), new String[] { ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted() }).pack());
-		AddDisplay(45, new CraftedItemStack(Material.EMERALD_BLOCK, ChatColor.GREEN + "" + ChatColor.BOLD + "Purchase " + item.getItemMeta().getDisplayName(), new String[] { ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted() }).pack());
-		AddDisplay(46, new CraftedItemStack(Material.EMERALD_BLOCK, ChatColor.GREEN + "" + ChatColor.BOLD + "Purchase " + item.getItemMeta().getDisplayName(), new String[] { ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted() }).pack());
-		AddDisplay(47, new CraftedItemStack(Material.EMERALD_BLOCK, ChatColor.GREEN + "" + ChatColor.BOLD + "Purchase " + item.getItemMeta().getDisplayName(), new String[] { ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted() }).pack());
+		AddDisplay(33, new CraftedItemStack(cancelBlock, cancelButton).build());
+		AddDisplay(34, new CraftedItemStack(cancelBlock, cancelButton).build());
+		AddDisplay(35, new CraftedItemStack(cancelBlock, cancelButton).build());
+		AddDisplay(42, new CraftedItemStack(cancelBlock, cancelButton).build());
+		AddDisplay(43, new CraftedItemStack(cancelBlock, cancelButton).build());
+		AddDisplay(44, new CraftedItemStack(cancelBlock, cancelButton).build());
+		AddDisplay(51, new CraftedItemStack(cancelBlock, cancelButton).build());
+		AddDisplay(52, new CraftedItemStack(cancelBlock, cancelButton).build());
+		AddDisplay(53, new CraftedItemStack(cancelBlock, cancelButton).build());
 	}
 
 	@Override
@@ -57,7 +65,7 @@ public abstract class PurchaseMenu extends Menu
 	{
 		Client client = new Client(player);
 
-		if (item.getType() == Material.EMERALD_BLOCK)
+		if (item.getType() == purchaseBlock)
 		{
 			// Purchase success
 
@@ -79,7 +87,7 @@ public abstract class PurchaseMenu extends Menu
 				}
 			}
 		}
-		else if (item.getType() == Material.REDSTONE_BLOCK)
+		else if (item.getType() == cancelBlock)
 		{
 			PlayVillagerFailure(player);
 		}
@@ -92,8 +100,8 @@ public abstract class PurchaseMenu extends Menu
 	{
 		AddDisplay(13, item);
 
-		AddPurchaseButton();
-		AddCancelButton();
+		addPurchaseButtons();
+		addCancelButtons();
 	}
 
 	protected void PlayVillagerFailure(Player player)
@@ -106,7 +114,7 @@ public abstract class PurchaseMenu extends Menu
 		player.playSound(player.getLocation(), Sound.VILLAGER_YES, 1.0F, 1.0F);
 	}
 
-	public abstract void PurchaseProduct(GoldCurrency currency, Client client);
+	public abstract void PurchaseProduct(ICurrency currency, Client client);
 
 	public abstract boolean PrePaymentChecks(Client client);
 }

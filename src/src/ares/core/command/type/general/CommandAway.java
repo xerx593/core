@@ -21,7 +21,10 @@ public class CommandAway extends CoreCommand
 
 	public CommandAway()
 	{
-		super("afk", new String[] { "busy", "away" }, 0, Rank.TRIAL_MOD);
+		super("afk", new String[]
+		{
+		"busy", "away"
+		}, 0, Rank.TRIAL_MOD);
 
 		this.afks_ = new ArrayList<>();
 	}

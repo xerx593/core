@@ -13,10 +13,16 @@ public class Title
 {
 	private static boolean equalsTypeArray(Class<?>[] a, Class<?>[] o)
 	{
-		if (a.length != o.length) { return false; }
+		if (a.length != o.length)
+		{
+			return false;
+		}
 		for (int i = 0; i < a.length; i++)
 		{
-			if ((!a[i].equals(o[i])) && (!a[i].isAssignableFrom(o[i]))) { return false; }
+			if ((!a[i].equals(o[i])) && (!a[i].isAssignableFrom(o[i])))
+			{
+				return false;
+			}
 		}
 		return true;
 	}
@@ -83,7 +89,10 @@ public class Title
 	private boolean ClassListEqual(Class<?>[] l1, Class<?>[] l2)
 	{
 		boolean equal = true;
-		if (l1.length != l2.length) { return false; }
+		if (l1.length != l2.length)
+		{
+			return false;
+		}
 		for (int i = 0; i < l1.length; i++)
 		{
 			if (l1[i] != l2[i])
@@ -103,8 +112,17 @@ public class Title
 			Object connection = getField(handle.getClass(), "playerConnection").get(handle);
 			Object[] actions = this.packetActions.getEnumConstants();
 			Method sendPacket = getMethod(connection.getClass(), "sendPacket", new Class[0]);
-			Object packet = this.packetTitle.getConstructor(new Class[] { this.packetActions, this.chatBaseComponent }).newInstance(new Object[] { actions[3], null });
-			sendPacket.invoke(connection, new Object[] { packet });
+			Object packet = this.packetTitle.getConstructor(new Class[]
+			{
+			this.packetActions, this.chatBaseComponent
+			}).newInstance(new Object[]
+			{
+			actions[3], null
+			});
+			sendPacket.invoke(connection, new Object[]
+			{
+				packet
+			});
 		}
 		catch (Exception e)
 		{
@@ -159,7 +177,10 @@ public class Title
 		for (Method m : clazz.getMethods())
 		{
 			Class[] types = toPrimitiveTypeArray(m.getParameterTypes());
-			if ((m.getName().equals(name)) && (equalsTypeArray(types, t))) { return m; }
+			if ((m.getName().equals(name)) && (equalsTypeArray(types, t)))
+			{
+				return m;
+			}
 		}
 		return null;
 	}
@@ -217,8 +238,17 @@ public class Title
 			Object connection = getField(handle.getClass(), "playerConnection").get(handle);
 			Object[] actions = this.packetActions.getEnumConstants();
 			Method sendPacket = getMethod(connection.getClass(), "sendPacket", new Class[0]);
-			Object packet = this.packetTitle.getConstructor(new Class[] { this.packetActions, this.chatBaseComponent }).newInstance(new Object[] { actions[4], null });
-			sendPacket.invoke(connection, new Object[] { packet });
+			Object packet = this.packetTitle.getConstructor(new Class[]
+			{
+			this.packetActions, this.chatBaseComponent
+			}).newInstance(new Object[]
+			{
+			actions[4], null
+			});
+			sendPacket.invoke(connection, new Object[]
+			{
+				packet
+			});
 		}
 		catch (Exception e)
 		{
@@ -237,21 +267,60 @@ public class Title
 				Object connection = getField(handle.getClass(), "playerConnection").get(handle);
 				Object[] actions = this.packetActions.getEnumConstants();
 				Method sendPacket = getMethod(connection.getClass(), "sendPacket", new Class[0]);
-				Object packet = this.packetTitle.getConstructor(new Class[] { this.packetActions, this.chatBaseComponent, Integer.TYPE, Integer.TYPE, Integer.TYPE }).newInstance(new Object[] { actions[2], null, Integer.valueOf(this.fadeInTime * (this.ticks ? 1 : 20)), Integer.valueOf(this.stayTime * (this.ticks ? 1 : 20)), Integer.valueOf(this.fadeOutTime * (this.ticks ? 1 : 20)) });
+				Object packet = this.packetTitle.getConstructor(new Class[]
+				{
+				this.packetActions, this.chatBaseComponent, Integer.TYPE, Integer.TYPE, Integer.TYPE
+				}).newInstance(new Object[]
+				{
+				actions[2], null, Integer.valueOf(this.fadeInTime * (this.ticks ? 1 : 20)), Integer.valueOf(this.stayTime * (this.ticks ? 1 : 20)), Integer.valueOf(this.fadeOutTime * (this.ticks ? 1 : 20))
+				});
 				if ((this.fadeInTime != -1) && (this.fadeOutTime != -1) && (this.stayTime != -1))
 				{
-					sendPacket.invoke(connection, new Object[] { packet });
+					sendPacket.invoke(connection, new Object[]
+					{
+						packet
+					});
 				}
-				Object serialized = getMethod(this.nmsChatSerializer, "a", new Class[] { String.class }).invoke(null, new Object[] { "{text:\"" + ChatColor.translateAlternateColorCodes('&', this.title) + "\",color:" + this.titleColor.name().toLowerCase() + "}" });
-				packet = this.packetTitle.getConstructor(new Class[] { this.packetActions, this.chatBaseComponent }).newInstance(new Object[] { actions[0], serialized });
-				sendPacket.invoke(connection, new Object[] { packet });
+				Object serialized = getMethod(this.nmsChatSerializer, "a", new Class[]
+				{
+					String.class
+				}).invoke(null, new Object[]
+				{
+					"{text:\"" + ChatColor.translateAlternateColorCodes('&', this.title) + "\",color:" + this.titleColor.name().toLowerCase() + "}"
+				});
+				packet = this.packetTitle.getConstructor(new Class[]
+				{
+				this.packetActions, this.chatBaseComponent
+				}).newInstance(new Object[]
+				{
+				actions[0], serialized
+				});
+				sendPacket.invoke(connection, new Object[]
+				{
+					packet
+				});
 				if (this.subtitle != "")
 				{
-					serialized = getMethod(this.nmsChatSerializer, "a", new Class[] { String.class }).invoke(null, new Object[] { "{text:\"" +
+					serialized = getMethod(this.nmsChatSerializer, "a", new Class[]
+					{
+						String.class
+					}).invoke(null, new Object[]
+					{
+						"{text:\"" +
 
-					ChatColor.translateAlternateColorCodes('&', this.subtitle) + "\",color:" + this.subtitleColor.name().toLowerCase() + "}" });
-					packet = this.packetTitle.getConstructor(new Class[] { this.packetActions, this.chatBaseComponent }).newInstance(new Object[] { actions[1], serialized });
-					sendPacket.invoke(connection, new Object[] { packet });
+						ChatColor.translateAlternateColorCodes('&', this.subtitle) + "\",color:" + this.subtitleColor.name().toLowerCase() + "}"
+					});
+					packet = this.packetTitle.getConstructor(new Class[]
+					{
+					this.packetActions, this.chatBaseComponent
+					}).newInstance(new Object[]
+					{
+					actions[1], serialized
+					});
+					sendPacket.invoke(connection, new Object[]
+					{
+						packet
+					});
 				}
 			}
 			catch (Exception e)

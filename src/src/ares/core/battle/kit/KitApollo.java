@@ -13,13 +13,17 @@ import org.bukkit.potion.PotionEffectType;
 
 import src.ares.core.battle.ability.AbilityArrowEscape;
 import src.ares.core.battle.ability.AbilityFireCharge;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedEnchantment;
+import src.ares.core.common.crafted.CraftedItemStack;
 
 public class KitApollo extends Kit
 {
 	public KitApollo()
 	{
-		super("Apollo Kit", new String[] { ChatColor.WHITE + "He's faster than the speed of wind.", ChatColor.WHITE + "They say nobody ever saw him." }, 6_000, ChatColor.YELLOW, Color.YELLOW);
+		super("Apollo Kit", new String[]
+		{
+		ChatColor.WHITE + "He's faster than the speed of wind.", ChatColor.WHITE + "They say nobody ever saw him."
+		}, 6_000, ChatColor.YELLOW, Color.YELLOW);
 
 		addAbility(new AbilityArrowEscape(this));
 		addAbility(new AbilityFireCharge(this));
@@ -35,15 +39,15 @@ public class KitApollo extends Kit
 	public void addItems()
 	{
 		CraftedItemStack sword = new CraftedItemStack(Material.BLAZE_ROD, ChatColor.YELLOW + "Apollo Stick");
-		addItemStack(sword.pack());
+		addItemStack(sword.build());
 
 		CraftedItemStack bow = new CraftedItemStack(Material.BOW);
-		bow.setUnbreakable(true);
-		bow.addEnchantment(Enchantment.ARROW_INFINITE, 1, false);
-		addItemStack(bow.pack());
+		bow.unbreakable(true);
+		bow.enchantment(new CraftedEnchantment(Enchantment.ARROW_INFINITE, 1, false));
+		addItemStack(bow.build());
 
 		CraftedItemStack arrow = new CraftedItemStack(Material.ARROW);
-		addItemStack(arrow.pack());
+		addItemStack(arrow.build());
 
 		addSoups(3);
 	}

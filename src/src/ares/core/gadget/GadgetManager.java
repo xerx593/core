@@ -11,13 +11,13 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import src.ares.core.common.Module;
 import src.ares.core.gadget.type.GadgetHandAmbrosiaShooter;
+import src.ares.core.gadget.type.GadgetHandBlockBreaker;
 import src.ares.core.gadget.type.GadgetHandFirework;
-import src.ares.core.gadget.type.GadgetHandLazerStick;
 import src.ares.core.gadget.type.GadgetHandOreoPocket;
 import src.ares.core.gadget.type.GadgetHandSnowballRifle;
 import src.ares.core.gadget.type.GadgetParticleBreedingLove;
-import src.ares.core.gadget.type.GadgetParticleUndeadFlames;
 import src.ares.core.gadget.type.GadgetParticleSnowRing;
+import src.ares.core.gadget.type.GadgetParticleUndeadFlames;
 import src.ares.core.gadget.type.premium.GadgetParticleElite;
 import src.ares.core.gadget.type.premium.GadgetParticleOlympian;
 import src.ares.core.gadget.type.premium.GadgetParticleTitan;
@@ -31,6 +31,7 @@ public class GadgetManager extends Module
 		return instance;
 	}
 
+	private boolean gadgetsEnabled = true;
 	private HashMap<Player, Gadget> toggledGadgets;
 	private HashMap<Player, Integer> particleTasks = new HashMap<>();
 	private List<Gadget> gadgetBag;
@@ -47,7 +48,8 @@ public class GadgetManager extends Module
 
 		gadgetBag.add(new GadgetHandSnowballRifle());
 		gadgetBag.add(new GadgetHandFirework());
-		gadgetBag.add(new GadgetHandLazerStick());
+		//gadgetBag.add(new GadgetHandLazerStick());
+		gadgetBag.add(new GadgetHandBlockBreaker());
 		gadgetBag.add(new GadgetHandAmbrosiaShooter());
 		gadgetBag.add(new GadgetHandOreoPocket());
 		// gadgetBag.add(new GadgetHandStacker());
@@ -55,17 +57,39 @@ public class GadgetManager extends Module
 		gadgetBag.add(new GadgetParticleSnowRing());
 		gadgetBag.add(new GadgetParticleUndeadFlames());
 		gadgetBag.add(new GadgetParticleBreedingLove());
-		
+
 		gadgetBag.add(new GadgetParticleElite());
 		gadgetBag.add(new GadgetParticleOlympian());
 		gadgetBag.add(new GadgetParticleTitan());
+	}
+	
+	public boolean areGadgetsEnabled()
+	{
+		for (Player player : toggledGadgets.keySet())
+		{
+			Gadget gadget = toggledGadgets.get(player);
+			gadget.disable(player);
+		}
+		
+		for (Player player : particleTasks.keySet())
+		{
+			int task = particleTasks.get(player);
+			getScheduler().cancelTask(task);
+		}
+		
+		return gadgetsEnabled;
+	}
+	
+	public void setGadgetsEnabled(boolean enabled)
+	{
+		this.gadgetsEnabled = enabled;
 	}
 
 	public List<Gadget> getGadgetBag()
 	{
 		return gadgetBag;
 	}
-	
+
 	public HashMap<Player, Integer> getParticleTasks()
 	{
 		return particleTasks;
@@ -80,10 +104,10 @@ public class GadgetManager extends Module
 	public void onPlayerQuit(PlayerQuitEvent event)
 	{
 		Player player = event.getPlayer();
-		
+
 		if (toggledGadgets.containsKey(player))
 			toggledGadgets.remove(player);
-		
+
 		if (particleTasks.containsKey(player))
 		{
 			Bukkit.getScheduler().cancelTask(particleTasks.get(player));

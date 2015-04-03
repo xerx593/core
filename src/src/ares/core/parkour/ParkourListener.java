@@ -34,7 +34,7 @@ public class ParkourListener extends Module
 	{
 		super("Parkour");
 
-		//decorateChests();
+		// decorateChests();
 	}
 
 	public void decorateChests()
@@ -47,16 +47,16 @@ public class ParkourListener extends Module
 			final Block chest1 = hubs.getWorld().getBlockAt(location1);
 			final Block chest2 = hubs.getWorld().getBlockAt(location2);
 
-//			if (chest1.getType() == Material.AIR || chest2.getType() == Material.AIR)
-//			{
-//				location1.getBlock().setType(reward);
-//				location2.getBlock().setType(reward);
-//			}
+			// if (chest1.getType() == Material.AIR || chest2.getType() == Material.AIR)
+			// {
+			// location1.getBlock().setType(reward);
+			// location2.getBlock().setType(reward);
+			// }
 
 			getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), new Runnable()
 			{
 				public void run()
-				{					
+				{
 					for (int i = 0; i < 3; i++)
 					{
 						location1.getWorld().spigot().playEffect(location1, Effect.HAPPY_VILLAGER);

@@ -7,13 +7,16 @@ import org.bukkit.entity.Player;
 
 import src.ares.core.battle.ability.AbilityEnlightment;
 import src.ares.core.battle.ability.AbilityForcefield;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 
 public class KitAres extends Kit
 {
 	public KitAres()
 	{
-		super("Ares Kit", new String[] { ChatColor.WHITE + "The god amoung warriors,", ChatColor.WHITE + "never lost a swordfight." }, 0, ChatColor.GOLD, Color.ORANGE);
+		super("Ares Kit", new String[]
+		{
+		ChatColor.WHITE + "The god amoung warriors,", ChatColor.WHITE + "never lost a swordfight."
+		}, 0, ChatColor.GOLD, Color.ORANGE);
 
 		addAbility(new AbilityEnlightment(this));
 		addAbility(new AbilityForcefield(this));
@@ -29,8 +32,8 @@ public class KitAres extends Kit
 	public void addItems()
 	{
 		CraftedItemStack sword = new CraftedItemStack(Material.IRON_SWORD, "Ares Sword");
-		sword.setUnbreakable(true);
-		addItemStack(sword.pack());
+		sword.unbreakable(true);
+		addItemStack(sword.build());
 
 		addSoups(3);
 	}

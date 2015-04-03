@@ -77,7 +77,8 @@ public class ItemStackFactory
 
 		if (data != 0)
 			item = new ItemStack(material, amount, data);
-		else item = new ItemStack(material, amount);
+		else
+			item = new ItemStack(material, amount);
 
 		ItemMeta meta = item.getItemMeta();
 

@@ -7,6 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import src.ares.core.Main;
 import src.ares.core.client.Rank;
+import src.ares.core.currency.type.AmbrosiaCurrency;
 import src.ares.core.gadget.GadgetManager;
 import src.ares.core.gadget.ParticleGadget;
 
@@ -17,6 +18,7 @@ public class GadgetParticleUndeadFlames extends ParticleGadget
 	public GadgetParticleUndeadFlames()
 	{
 		super("Undead Flames Particle", Material.BLAZE_POWDER, Rank.PLAYER);
+		setShouldBeOwned(true, new AmbrosiaCurrency(5000));
 	}
 
 	public void useParticleGadget(Player player)

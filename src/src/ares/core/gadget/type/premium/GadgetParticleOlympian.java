@@ -19,7 +19,7 @@ public class GadgetParticleOlympian extends ParticleGadget
 		super("Olympian Particle", Material.WOOL, Rank.OLYMPIAN);
 		setData((byte) 5);
 	}
-	
+
 	public void useParticleGadget(Player player)
 	{
 		int task = new GadgetParticleFlameRingAction(player).runTaskTimer(Main.getPlugin(), 0L, 1L).getTaskId();

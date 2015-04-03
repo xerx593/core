@@ -37,7 +37,7 @@ public class CommandRankSecond extends CoreCommand
 			{
 				Main.error(getClass().getSimpleName(), "Second rank could not be converted: " + rank + ".");
 			}
-			
+
 			target.unload();
 			ServerDatabase.getInstance().update(player);
 		}
@@ -67,7 +67,7 @@ public class CommandRankSecond extends CoreCommand
 			getClient().sendMessage(getModuleName(), Chat.rank(rank) + " is not a valid rank.");
 			return;
 		}
-		
+
 		target.unload();
 		ServerDatabase.getInstance().update(player);
 	}

@@ -32,7 +32,7 @@ public class PlayerPanel extends Panel
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void run()
+	public void update()
 	{
 		this.client = new Client(getPlayer());
 		this.storage = client.getManager();
@@ -56,7 +56,7 @@ public class PlayerPanel extends Panel
 
 		addRank();
 		addEntry("    ");
-		
+
 		addOnlineNumber();
 	}
 
@@ -66,7 +66,8 @@ public class PlayerPanel extends Panel
 
 		if (ambrosia > 0)
 			addEntry("§7§f" + Integer.toString(ambrosia));
-		else addEntry("§7§f" +"None");
+		else
+			addEntry("§7§f" + "None");
 	}
 
 	private void addGold()
@@ -75,7 +76,8 @@ public class PlayerPanel extends Panel
 
 		if (gold > 0)
 			addEntry("§6§f" + Integer.toString(gold));
-		else addEntry("§6§f" + "None");
+		else
+			addEntry("§6§f" + "None");
 	}
 
 	private void addKitSelection()
@@ -93,7 +95,7 @@ public class PlayerPanel extends Panel
 	{
 		addEntry(C.GRAY + "" + count + "/" + Bukkit.getMaxPlayers() + " online.");
 	}
-	
+
 	private void addWebsite()
 	{
 		addEntry(C.GRAY + "ares-network.net");

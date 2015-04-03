@@ -204,6 +204,11 @@ public class ServerStorage
 	{
 		return getServerMode() == ServerMode.SUMMER;
 	}
+	
+	public boolean isAprilFools()
+	{
+		return getServerMode() == ServerMode.APRIL_FOOLS;
+	}
 
 	public void save()
 	{

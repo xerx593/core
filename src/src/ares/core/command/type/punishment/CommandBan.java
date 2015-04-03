@@ -33,7 +33,7 @@ public class CommandBan extends CoreCommand
 
 		if (punishShortcutTime.contains("permanent"))
 		{
-			ban = new BanPunishment(reason, offenderClient, new OfflineClient(getClient().getName()), -1);
+			ban = new BanPunishment(reason, offenderClient, getClient(), -1);
 			ban.apply();
 			return;
 		}
@@ -48,8 +48,10 @@ public class CommandBan extends CoreCommand
 				return;
 			}
 
-			ban = new BanPunishment(reason, offenderClient, new OfflineClient(getClient().getName()), punishTime);
+			ban = new BanPunishment(reason, offenderClient, getClient(), punishTime);
 			ban.apply();
+
+			getClient().sendMessage(getModuleName(), "Offender " + Chat.player(offenderClient.getName()) + " was banned accordingly.");
 		}
 		catch (NumberFormatException e)
 		{

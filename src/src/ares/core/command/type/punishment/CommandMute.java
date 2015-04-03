@@ -33,7 +33,7 @@ public class CommandMute extends CoreCommand
 
 		if (punishShortcutTime.contains("permanent"))
 		{
-			mute = new MutePunishment(reason, offenderClient, new OfflineClient(getClient().getName()), -1);
+			mute = new MutePunishment(reason, offenderClient, getClient(), -1);
 			mute.apply();
 			return;
 		}
@@ -48,8 +48,10 @@ public class CommandMute extends CoreCommand
 				return;
 			}
 
-			mute = new MutePunishment(reason, offenderClient, new OfflineClient(getClient().getName()), punishTime);
+			mute = new MutePunishment(reason, offenderClient, getClient(), punishTime);
 			mute.apply();
+			
+			getClient().sendMessage(getModuleName(), "Offender " + Chat.player(offenderClient.getName()) + " was muted accordingly.");
 		}
 		catch (NumberFormatException e)
 		{

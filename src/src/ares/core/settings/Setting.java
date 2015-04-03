@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import src.ares.core.client.Rank;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.common.util.Chat;
 
 public class Setting
@@ -43,16 +43,25 @@ public class Setting
 
 	public ItemStack getTurnedOn()
 	{
-		return new CraftedItemStack(Material.WOOL, ChatColor.GREEN + "" + ChatColor.BOLD + "Enabled").setLore(new String[] { ChatColor.GRAY + name, ChatColor.WHITE + "Click to disable." }).setData((byte) 5).pack();
+		return new CraftedItemStack(Material.WOOL, ChatColor.GREEN + "" + ChatColor.BOLD + "Enabled").lore(new String[]
+		{
+		ChatColor.GRAY + name, ChatColor.WHITE + "Click to disable."
+		}).data((byte) 5).build();
 	}
 
 	public ItemStack getTurnedOff()
 	{
-		return new CraftedItemStack(Material.WOOL, ChatColor.RED + "" + ChatColor.BOLD + "Disabled").setLore(new String[] { ChatColor.GRAY + name, ChatColor.WHITE + "Click to enable." }).setData((byte) 14).pack();
+		return new CraftedItemStack(Material.WOOL, ChatColor.RED + "" + ChatColor.BOLD + "Disabled").lore(new String[]
+		{
+		ChatColor.GRAY + name, ChatColor.WHITE + "Click to enable."
+		}).data((byte) 14).build();
 	}
 
 	public ItemStack getLocked()
 	{
-		return new CraftedItemStack(Material.WOOL, ChatColor.BLUE + "" + ChatColor.BOLD + "Locked").setLore(new String[] { ChatColor.GRAY + name, ChatColor.WHITE + "Only for " + Chat.rank(rank.getName() + "+") + " Rank" }).setData((byte) 7).pack();
+		return new CraftedItemStack(Material.WOOL, ChatColor.BLUE + "" + ChatColor.BOLD + "Locked").lore(new String[]
+		{
+		ChatColor.GRAY + name, ChatColor.WHITE + "Only for " + Chat.rank(rank.getName() + "+") + " Rank"
+		}).data((byte) 7).build();
 	}
 }

@@ -26,7 +26,7 @@ public class SettingsManager
 		settingBag.add(new Setting("Private Messages", Material.CHEST, Rank.PLAYER));
 		settingBag.add(new Setting("Public Chat", Material.SIGN, Rank.PLAYER));
 		settingBag.add(new Setting("Staff Chat", Material.EYE_OF_ENDER, Rank.TRIAL_MOD));
-		
+
 		for (Setting setting : settingBag)
 		{
 			Main.debug("Creating " + setting.getName() + " Setting");

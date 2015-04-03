@@ -15,7 +15,7 @@ public class Chat
 	private static ChatColor cBody = C.WHITE;
 	private static ChatColor cPlayer = C.YELLOW;
 	private static ChatColor cTool = C.AQUA;
-	private static ChatColor cLink = C.GOLD;
+	private static ChatColor cLink = C.RED;
 	private static ChatColor cRank = C.GOLD;
 	private static ChatColor cKit = C.GREEN;
 	private static ChatColor cGold = UtilCurrency.getColor();
@@ -88,14 +88,20 @@ public class Chat
 
 	public static String structure(Rank rank, String player, String message)
 	{
-		if (rank == Rank.PLAYER) { return cPlayer + player + ChatColor.GRAY + ": " + cBody + message; }
+		if (rank == Rank.PLAYER)
+		{
+			return cPlayer + player + ChatColor.GRAY + ": " + cBody + message;
+		}
 
 		return ChatColor.GRAY + "[" + rank.getColor() + rank.getName() + ChatColor.GRAY + "] " + cPlayer + player + ChatColor.GRAY + ": " + cBody + message;
 	}
 
 	public static String structure(String info, Rank rank, String player, String message)
 	{
-		if (rank == Rank.PLAYER) { return cPlayer + player + " " + cBody + message; }
+		if (rank == Rank.PLAYER)
+		{
+			return cPlayer + player + " " + cBody + message;
+		}
 
 		return ChatColor.GRAY + info + " " + rank.getColor() + rank.getName().toUpperCase() + " " + cPlayer + player + ChatColor.GRAY + ": " + cBody + message;
 	}

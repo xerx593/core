@@ -2,6 +2,8 @@ package src.ares.core.client;
 
 import org.bukkit.ChatColor;
 
+import src.ares.core.client.storage.ClientManager;
+
 /**
  * Stores all available ranks of the server.
  * 

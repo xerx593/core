@@ -45,7 +45,7 @@ public class StaffListener extends Module
 				return;
 
 			event.setCancelled(true);
-			
+
 			for (Player player : Bukkit.getOnlinePlayers())
 			{
 				Client other = new Client(player);

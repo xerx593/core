@@ -9,6 +9,9 @@ public class UpgradeArmorProjectileProtection extends Upgrade
 {
 	public UpgradeArmorProjectileProtection()
 	{
-		super("Armor Projectile Protection", new String[] { ChatColor.GRAY + "Equip your armor with", ChatColor.GRAY + "protection against projectiles." }, new GoldCurrency(3000), Material.BOOK, 4);
+		super("Armor Projectile Protection", new String[]
+		{
+		ChatColor.GRAY + "Equip your armor with", ChatColor.GRAY + "protection against projectiles."
+		}, new GoldCurrency(3000), Material.BOOK, 4);
 	}
 }

@@ -2,9 +2,13 @@ package src.ares.core.chat;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
+
+import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -17,6 +21,7 @@ import src.ares.core.client.Rank;
 import src.ares.core.common.Module;
 import src.ares.core.common.util.Chat;
 import src.ares.core.common.util.UtilLocation;
+import src.ares.core.server.data.ServerStorage;
 import src.ares.core.world.WorldType;
 
 public class ChatListener extends Module
@@ -29,6 +34,8 @@ public class ChatListener extends Module
 	}
 
 	private Filter filter;
+	private Random random = new Random();
+	private String[] slurs = { "burp", "kitties", "blub", "nub", "luv", "...", "asf", "lol", "rekt", "kis", "justen" };
 	private ArrayList<String> commands = new ArrayList<>();
 
 	public ChatListener()
@@ -118,6 +125,29 @@ public class ChatListener extends Module
 		if (!filter.validate())
 		{
 			event.setMessage(filter.getFiltered());
+		}
+	}
+
+	// @EventHandler
+	public void aprilFoolsJokes(AsyncPlayerChatEvent event)
+	{
+		if (ServerStorage.getInstance().isAprilFools())
+		{
+			Player player = event.getPlayer();
+			Client client = new Client(player);
+			String msg = event.getMessage();
+			String[] parts = msg.split(" ");
+			int chance = random.nextInt(100);
+			
+			if (chance <= 15 && !client.isStaff() && parts.length > 1)
+			{
+				String word = parts[random.nextInt(parts.length)];
+				String replace = ChatColor.RED + slurs[random.nextInt(slurs.length)] + ChatColor.WHITE;
+				
+				String replaced = msg.replace(word, replace);
+				event.setMessage(replaced);
+				client.playLocationSound(Sound.PIG_IDLE, 0.8F, 1.0F);
+			}
 		}
 	}
 }

@@ -18,7 +18,7 @@ public class ProtectionListener extends Module
 	{
 		return instance;
 	}
-	
+
 	public ProtectionListener()
 	{
 		super("Protection");

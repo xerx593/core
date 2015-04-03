@@ -11,7 +11,10 @@ public class CommandMessageReply extends CoreCommand
 {
 	public CommandMessageReply()
 	{
-		super("r", new String[] { "tell" }, 1, Rank.PLAYER, "<message>");
+		super("r", new String[]
+		{
+			"tell"
+		}, 1, Rank.PLAYER, "<message>");
 	}
 
 	@Override

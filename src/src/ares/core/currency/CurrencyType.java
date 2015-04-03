@@ -4,9 +4,8 @@ import src.ares.core.common.util.UtilString;
 
 public enum CurrencyType
 {
-	GOLD,
-	AMBROSIA;
-	
+	GOLD, AMBROSIA;
+
 	@Override
 	public String toString()
 	{

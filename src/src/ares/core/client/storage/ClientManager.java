@@ -26,6 +26,8 @@ import src.ares.core.common.util.Chat;
 import src.ares.core.common.util.UtilString;
 import src.ares.core.currency.CurrencyType;
 import src.ares.core.currency.ICurrency;
+import src.ares.core.gadget.Gadget;
+import src.ares.core.gadget.GadgetManager;
 import src.ares.core.settings.Setting;
 import src.ares.core.settings.SettingsManager;
 import src.ares.core.stats.Statistic;
@@ -127,6 +129,14 @@ public class ClientManager
 			config.createSection(ClientSection.HISTORY.toString());
 
 		config.addDefault(ClientSection.CHALLENGES.toString() + ".parkour-hub", false);
+		
+		for (Gadget gadget : GadgetManager.getInstance().getGadgetBag())
+		{
+			if (gadget.getShouldBeOwned())
+			{
+				config.addDefault(ClientSection.GADGETS.toString() + "." + UtilString.slug(gadget.getName()), false);
+			}
+		}
 
 		config.options().copyDefaults(true);
 		save();
@@ -823,5 +833,30 @@ public class ClientManager
 	{
 		config.set(ClientSection.CHALLENGES.toString() + ".parkour-hub", completed);
 		save();
+	}
+	
+	public boolean hasGadgetOwned(Gadget gadget)
+	{
+		if (gadget.getShouldBeOwned())
+		{
+			return config.getBoolean(ClientSection.GADGETS.toString() + "." + UtilString.slug(gadget.getName()));
+		}
+		
+		return false;
+	}
+
+	public void setGadgetOwned(Gadget gadget, boolean owned)
+	{
+		if (gadget.getShouldBeOwned())
+		{
+			config.set(ClientSection.GADGETS.toString() + "." + UtilString.slug(gadget.getName()), owned);
+
+			if (onlinePlayer != null)
+			{
+				onlinePlayer.sendMessage(Chat.format("Gadget", "You have purchased the " + Chat.gadget(gadget.getName()) + "."));
+			}
+			
+			save();
+		}
 	}
 }

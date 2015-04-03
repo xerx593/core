@@ -19,7 +19,8 @@ import src.ares.core.battle.RandomDrop;
 import src.ares.core.battle.kit.Kit;
 import src.ares.core.client.Client;
 import src.ares.core.common.SoupAddon;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedEnchantment;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.common.util.Chat;
 import src.ares.core.condition.type.BattleProtectionCondition;
 import src.ares.core.condition.type.SpectateCondition;
@@ -48,7 +49,7 @@ public class BattleHelper
 
 		for (int i = 0; i <= 8; i++)
 		{
-			inventory.setItem(i, cover.pack());
+			inventory.setItem(i, cover.build());
 		}
 
 		inventory.setItem(4, MenuManager.getInstance().getBattleInventoryMenu().getDisplay());
@@ -92,7 +93,7 @@ public class BattleHelper
 	{
 		new RandomDrop(SoupAddon.getInstance().getDisplay(), 50).dropItem(world, location);
 		new RandomDrop(new AmbrosiaCurrency().getDisplay(), 20).dropItem(world, location, 5);
-		new RandomDrop(new CraftedItemStack(Material.FERMENTED_SPIDER_EYE).addEnchantment(Enchantment.LUCK, 1, false).pack(), 20).dropItem(world, location);
+		new RandomDrop(new CraftedItemStack(Material.FERMENTED_SPIDER_EYE).enchantment(new CraftedEnchantment(Enchantment.LUCK, 1, false)).build(), 20).dropItem(world, location);
 	}
 
 	/**

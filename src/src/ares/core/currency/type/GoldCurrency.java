@@ -1,10 +1,9 @@
 package src.ares.core.currency.type;
 
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.currency.CurrencyMaterial;
 import src.ares.core.currency.CurrencyType;
 import src.ares.core.currency.ICurrency;
@@ -35,9 +34,7 @@ public class GoldCurrency implements Cloneable, ICurrency
 	@Override
 	public ItemStack getDisplay()
 	{
-		CraftedItemStack item = new CraftedItemStack(material, name);
-		item.addEnchantment(Enchantment.LURE, 1, true);
-		return item.pack();
+		return new CraftedItemStack(material, name).glow().build();
 	}
 
 	@Override

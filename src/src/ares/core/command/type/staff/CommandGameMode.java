@@ -13,7 +13,10 @@ public class CommandGameMode extends CoreCommand
 
 	public CommandGameMode()
 	{
-		super("gamemode", new String[] { "gm" }, 1, Rank.ADMIN, "<survival | creative | adventure> OR <0 | 1 | 2>");
+		super("gamemode", new String[]
+		{
+			"gm"
+		}, 1, Rank.ADMIN, "<survival | creative | adventure> OR <0 | 1 | 2>");
 	}
 
 	@Override

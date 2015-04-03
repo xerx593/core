@@ -6,7 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.ItemStack;
 
-import src.ares.core.Main;
 import src.ares.core.battle.BattleManager;
 import src.ares.core.battle.kit.Kit;
 import src.ares.core.client.Client;
@@ -99,16 +98,16 @@ public class MenuBattleOptions extends Menu
 			}
 		}
 	}
-	
+
 	private int calculateCost(Kit kit, int level)
 	{
 		int cost = kit.getCost() + (kit.getCost() * level);
-		
+
 		if (cost == 0)
 		{
 			cost = 1000;
 		}
-		
+
 		return cost;
 	}
 

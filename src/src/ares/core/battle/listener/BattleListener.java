@@ -1,5 +1,7 @@
 package src.ares.core.battle.listener;
 
+import java.util.Random;
+
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -28,6 +31,7 @@ import src.ares.core.common.Module;
 import src.ares.core.common.util.Chat;
 import src.ares.core.common.util.UtilPlayer;
 import src.ares.core.common.util.UtilString;
+import src.ares.core.server.data.ServerStorage;
 import src.ares.core.world.CoreWorld;
 import src.ares.core.world.WorldManager;
 import src.ares.core.world.WorldSelector;
@@ -47,6 +51,11 @@ public class BattleListener extends Module
 		super("Battle");
 	}
 
+	private Random random = new Random();
+	private Sound[] jokeSounds =
+	{
+	Sound.HORSE_HIT, Sound.CHICKEN_IDLE, Sound.PIG_IDLE, Sound.COW_IDLE, Sound.BAT_IDLE
+	};
 	private BattleManager battleManager = BattleManager.getInstance();
 	private Notification notification = new Notification();
 
@@ -188,16 +197,16 @@ public class BattleListener extends Module
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event)
 	{
 		LivingEntity entity = event.getEntity();
 		Player killer = entity.getKiller();
-		
+
 		if (killer == null)
 			return;
-		
+
 		Client client = new Client(killer);
 
 		if (client.getCoreWorld().getWorldType() == WorldType.PVP)
@@ -240,12 +249,29 @@ public class BattleListener extends Module
 			}
 		}
 	}
-	
+
+	@EventHandler
+	public void aprilFoolsDamage(EntityDamageEvent event)
+	{
+		if (ServerStorage.getInstance().isAprilFools())
+		{
+			if (event.getEntity() instanceof Player)
+			{
+				Player player = (Player) event.getEntity();
+
+				if (random.nextInt(100) <= 20)
+				{
+					player.getWorld().playSound(player.getLocation(), jokeSounds[random.nextInt(jokeSounds.length)], 0.5F, 1.3F);
+				}
+			}
+		}
+	}
+
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event)
 	{
 		Player player = event.getPlayer();
-		
+
 		if (battleManager.getKitPreferences().containsKey(player))
 			battleManager.getKitPreferences().remove(player);
 	}

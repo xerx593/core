@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.common.util.ItemStackFactory;
 import src.ares.core.world.WorldManager;
 import src.ares.core.world.WorldType;
@@ -41,7 +41,7 @@ public class SoupAddon extends Module
 
 	public ItemStack getDisplay()
 	{
-		return soup.pack();
+		return soup.build();
 	}
 
 	@EventHandler

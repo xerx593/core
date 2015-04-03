@@ -39,7 +39,10 @@ public class PortalManager
 	{
 		for (Portal portal : portalBag)
 		{
-			if (portal.getName().contains(name) || portal.getName().startsWith(name)) { return portal; }
+			if (portal.getName().contains(name) || portal.getName().startsWith(name))
+			{
+				return portal;
+			}
 		}
 
 		return null;

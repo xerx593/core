@@ -37,7 +37,9 @@ public class CommandWarn extends CoreCommand
 			return;
 		}
 
-		WarnPunishment warn = new WarnPunishment(UtilString.build(getArgs(), 1), new OfflineClient(offender.getName()), new OfflineClient(getClient().getName()));
+		WarnPunishment warn = new WarnPunishment(UtilString.build(getArgs(), 1), new OfflineClient(offender.getName()), getClient());
 		warn.apply();
+		
+		getClient().sendMessage(getModuleName(), "Offender " + Chat.player(offender.getName()) + " was warned accordingly.");
 	}
 }

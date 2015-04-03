@@ -5,19 +5,7 @@ package src.ares.core.client.storage;
  */
 public enum ClientSection
 {
-	USERNAME("Username"),
-	RANK("Rank"),
-	SECOND_RANK("Second-Ranks"),
-	COMBAT_LOGGED("Combat-Logged"),
-	KILLSTREAK("Killstreak"),
-	BANNED("Banned"),
-	MUTED("Muted"),
-	KITS("Kits"),
-	UPGRADES("Upgrades"),
-	STATS("Stats"),
-	SETTINGS("Settings"),
-	HISTORY("History"),
-	CHALLENGES("Challenges");
+	USERNAME("Username"), RANK("Rank"), SECOND_RANK("Second-Ranks"), COMBAT_LOGGED("Combat-Logged"), KILLSTREAK("Killstreak"), BANNED("Banned"), MUTED("Muted"), KITS("Kits"), UPGRADES("Upgrades"), STATS("Stats"), SETTINGS("Settings"), HISTORY("History"), CHALLENGES("Challenges"), GADGETS("Gadgets");
 
 	private String name;
 

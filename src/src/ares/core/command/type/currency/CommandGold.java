@@ -3,7 +3,6 @@ package src.ares.core.command.type.currency;
 import src.ares.core.client.Rank;
 import src.ares.core.command.CoreCommand;
 import src.ares.core.currency.CurrencyType;
-import src.ares.core.currency.type.GoldCurrency;
 
 public class CommandGold extends CoreCommand
 {

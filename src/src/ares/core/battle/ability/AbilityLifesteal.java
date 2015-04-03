@@ -46,7 +46,7 @@ public class AbilityLifesteal extends Ability
 	public void useAbility(final Player player)
 	{
 		int level = level(player);
-		
+
 		for (ItemStack item : player.getInventory().getContents())
 		{
 			if (item.getType() == Material.STONE_AXE)

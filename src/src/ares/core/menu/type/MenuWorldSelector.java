@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 
 import src.ares.core.client.Client;
 import src.ares.core.client.Rank;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.common.util.UtilString;
 import src.ares.core.menu.Menu;
 import src.ares.core.world.CoreWorld;
@@ -53,17 +53,26 @@ public class MenuWorldSelector extends Menu
 			// Adding Hub Worlds
 
 			if (world.getWorldType() == WorldType.HUB)
-				AddDisplay(slot1++, new CraftedItemStack(Material.COMPASS, UtilString.format(world.getRealName()), new String[] { ChatColor.RED + "" + world.onlineStaff() + " Staff", ChatColor.GRAY + "" + world.onlinePlayers() + " Players" }).setAmount(world.onlinePlayers()).pack());
+				AddDisplay(slot1++, new CraftedItemStack(Material.COMPASS, UtilString.format(world.getRealName()), new String[]
+				{
+				ChatColor.RED + "" + world.onlineStaff() + " Staff", ChatColor.GRAY + "" + world.onlinePlayers() + " Players"
+				}).amount(world.onlinePlayers()).build());
 
 			// Adding PvP Worlds
 
 			else if (world.getWorldType() == WorldType.PVP)
-				AddDisplay(slot2++, new CraftedItemStack(Material.LAVA_BUCKET, UtilString.format(world.getRealName()), new String[] { ChatColor.RED + "" + world.onlineStaff() + " Staff", ChatColor.GRAY + "" + world.onlinePlayers() + " Players" }).setAmount(world.onlinePlayers()).pack());
+				AddDisplay(slot2++, new CraftedItemStack(Material.LAVA_BUCKET, UtilString.format(world.getRealName()), new String[]
+				{
+				ChatColor.RED + "" + world.onlineStaff() + " Staff", ChatColor.GRAY + "" + world.onlinePlayers() + " Players"
+				}).amount(world.onlinePlayers()).build());
 
 			// Adding Creative Worlds
 
 			else if (world.getWorldType() == WorldType.SURVIVAL)
-				AddDisplay(slot3++, new CraftedItemStack(Material.APPLE, UtilString.format(world.getRealName()), new String[] { ChatColor.RED + "" + world.onlineStaff() + " Staff", ChatColor.GRAY + "" + world.onlinePlayers() + " Players" }).setAmount(world.onlinePlayers()).pack());
+				AddDisplay(slot3++, new CraftedItemStack(Material.APPLE, UtilString.format(world.getRealName()), new String[]
+				{
+				ChatColor.RED + "" + world.onlineStaff() + " Staff", ChatColor.GRAY + "" + world.onlinePlayers() + " Players"
+				}).amount(world.onlinePlayers()).build());
 
 			// Adding Build Worlds
 
@@ -75,7 +84,10 @@ public class MenuWorldSelector extends Menu
 				}
 				else if (secondRank == Rank.BUILDER || client.compareSecondWith(Rank.ADMIN) || rank == Rank.BUILDER || client.compareWith(Rank.ADMIN))
 				{
-					AddDisplay(slot5++, new CraftedItemStack(Material.APPLE, UtilString.format(world.getRealName()), new String[] { ChatColor.RED + "Builders Only" }).setAmount(world.onlinePlayers()).pack());
+					AddDisplay(slot5++, new CraftedItemStack(Material.APPLE, UtilString.format(world.getRealName()), new String[]
+					{
+						ChatColor.RED + "Builders Only"
+					}).amount(world.onlinePlayers()).build());
 				}
 			}
 		}

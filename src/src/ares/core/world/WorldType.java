@@ -4,12 +4,7 @@ import src.ares.core.common.util.UtilString;
 
 public enum WorldType
 {
-	HUB,
-	PVP,
-	SURVIVAL,
-	CREATIVE,
-	BUILD,
-	OTHER;
+	HUB, PVP, SURVIVAL, CREATIVE, BUILD, OTHER;
 
 	@Override
 	public String toString()

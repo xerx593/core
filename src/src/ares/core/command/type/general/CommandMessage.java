@@ -41,11 +41,11 @@ public class CommandMessage extends CoreCommand
 			getClient().sendMessage(getModuleName(), "You cannot send a message to yourself.");
 			return;
 		}
-		
+
 		Client fromClient = new Client(from);
 		Client toClient = new Client(to);
 		Setting setting = toClient.getManager().getSetting("Private Messages");
-		
+
 		if (!fromClient.getManager().hasEnabledSetting(setting))
 		{
 			getClient().sendMessage(setting.getName(), "Disabled, open the settings menu to re-enable it.");
@@ -60,7 +60,7 @@ public class CommandMessage extends CoreCommand
 
 		String message = UtilString.build(getArgs(), 1);
 		sendMessage(from, to, message);
-		
+
 		fromClient.unload();
 		toClient.unload();
 	}
@@ -85,12 +85,12 @@ public class CommandMessage extends CoreCommand
 
 		target.unload();
 	}
-	
+
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event)
 	{
 		Player player = event.getPlayer();
-		
+
 		if (messagers.containsKey(player))
 			messagers.remove(player);
 	}

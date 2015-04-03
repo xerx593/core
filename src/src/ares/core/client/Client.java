@@ -50,7 +50,7 @@ public class Client
 	public void addCurrency(ICurrency currency, boolean inform)
 	{
 		int fixedAmount = manager.getCurrency(CurrencyType.valueOf(UtilString.enumerator(currency.getName()))) + currency.getAmount();
-		
+
 		if (manager.updateCurrency(currency.getName(), fixedAmount, inform))
 		{
 			if (inform)
@@ -77,7 +77,7 @@ public class Client
 			{
 				player.sendMessage(Chat.format("Account", "You have lost " + Chat.gold(currency.getFormatted()) + "."));
 			}
-			
+
 			return true;
 		}
 

@@ -12,7 +12,7 @@ import org.bukkit.util.Vector;
 
 import src.ares.core.battle.kit.Kit;
 import src.ares.core.client.Client;
-import src.ares.core.common.Cooldown;
+import src.ares.core.common.cooldown.Cooldown;
 import src.ares.core.common.util.Chat;
 
 public class AbilityEarthquake extends HotkeyAbility

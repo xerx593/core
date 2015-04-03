@@ -9,14 +9,17 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import src.ares.core.battle.ability.AbilityEarthquake;
 import src.ares.core.battle.ability.AbilityRevenge;
-import src.ares.core.common.item.CraftedArmor;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedArmor;
+import src.ares.core.common.crafted.CraftedItemStack;
 
 public class KitThor extends Kit
 {
 	public KitThor()
 	{
-		super("Thor Kit", new String[] { ChatColor.WHITE + "No enemy will stand upon his", ChatColor.WHITE + "endless rage and skills." }, 8_500, ChatColor.GRAY, Color.SILVER);
+		super("Thor Kit", new String[]
+		{
+		ChatColor.WHITE + "No enemy will stand upon his", ChatColor.WHITE + "endless rage and skills."
+		}, 8_500, ChatColor.GRAY, Color.SILVER);
 
 		addAbility(new AbilityEarthquake(this));
 		addAbility(new AbilityRevenge(this));
@@ -25,18 +28,18 @@ public class KitThor extends Kit
 	@Override
 	public void addEffects(Player player)
 	{
-		player.getInventory().setHelmet(new CraftedItemStack(Material.IRON_HELMET, "Olympus Helmet").setUnbreakable(true).pack());
-		player.getInventory().setChestplate(new CraftedArmor(Material.LEATHER_CHESTPLATE, "Olympus Chestplate", new String[] {}, getColor()).setUnbreakable(true).pack());
-		player.getInventory().setLeggings(new CraftedItemStack(Material.DIAMOND_LEGGINGS, "Olympus Leggings").setUnbreakable(true).pack());
-		player.getInventory().setBoots(new CraftedItemStack(Material.DIAMOND_BOOTS, "Olympus Boots").setUnbreakable(true).pack());
+		player.getInventory().setHelmet(new CraftedItemStack(Material.IRON_HELMET, "Olympus Helmet").unbreakable(true).build());
+		player.getInventory().setChestplate(new CraftedArmor(Material.LEATHER_CHESTPLATE, getColor(), "Olympus Chestplate").unbreakable(true).build());
+		player.getInventory().setLeggings(new CraftedItemStack(Material.DIAMOND_LEGGINGS, "Olympus Leggings").unbreakable(true).build());
+		player.getInventory().setBoots(new CraftedItemStack(Material.DIAMOND_BOOTS, "Olympus Boots").unbreakable(true).build());
 	}
 
 	@Override
 	public void addItems()
 	{
 		CraftedItemStack hoe = new CraftedItemStack(Material.IRON_HOE, ChatColor.YELLOW + "Thor Hammer");
-		hoe.setUnbreakable(true);
-		addItemStack(hoe.pack());
+		hoe.unbreakable(true);
+		addItemStack(hoe.build());
 
 		addSoups(3);
 	}

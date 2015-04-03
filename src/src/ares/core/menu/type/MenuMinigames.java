@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.ItemStack;
 
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.menu.Menu;
 import src.ares.core.server.BungeeCord;
 
@@ -36,8 +36,8 @@ public class MenuMinigames extends Menu
 	@Override
 	protected void InventoryConstruct(Player player)
 	{
-		AddDisplay(11, new CraftedItemStack(Material.ENDER_PEARL, "Enderstrike 1").pack());
-		AddDisplay(12, new CraftedItemStack(Material.ENDER_PEARL, "Enderstrike 2").pack());
-		AddDisplay(14, new CraftedItemStack(Material.EMERALD, "Gemhunt-1").pack());
+		AddDisplay(11, new CraftedItemStack(Material.ENDER_PEARL, "Enderstrike 1").build());
+		AddDisplay(12, new CraftedItemStack(Material.ENDER_PEARL, "Enderstrike 2").build());
+		AddDisplay(14, new CraftedItemStack(Material.EMERALD, "Gemhunt-1").build());
 	}
 }

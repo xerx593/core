@@ -8,7 +8,7 @@ import src.ares.core.Main;
 public class Updater extends BukkitRunnable
 {
 	@SuppressWarnings("deprecation")
-    public Updater()
+	public Updater()
 	{
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), this, 0L, 20L);
 	}

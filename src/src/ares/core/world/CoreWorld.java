@@ -251,22 +251,22 @@ public abstract class CoreWorld extends Module
 	{
 		player.teleport(getSpawnLocation());
 	}
-	
+
 	protected void setBlockDecay(boolean blockDecay)
 	{
 		this.blockDecay = blockDecay;
 	}
-	
+
 	protected boolean isBlockDecay()
 	{
 		return blockDecay;
 	}
-	
+
 	protected void setItemPickup(boolean itemPickup)
 	{
 		this.itemPickup = itemPickup;
 	}
-	
+
 	public boolean canPickupItem()
 	{
 		return itemPickup;
@@ -398,7 +398,7 @@ public abstract class CoreWorld extends Module
 	{
 		if (e.getBlock() == null)
 			return;
-		
+
 		if (e.getBlock().getWorld().equals(getWorld()))
 		{
 			if (blockDecay)
@@ -509,7 +509,7 @@ public abstract class CoreWorld extends Module
 		{
 			if ((buildMode.hasItem(player) || player.isOp()))
 				return;
-			
+
 			if (itemPickup)
 				e.setCancelled(true);
 		}

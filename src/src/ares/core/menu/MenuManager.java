@@ -68,7 +68,7 @@ public class MenuManager
 	{
 		return settingsMenu;
 	}
-	
+
 	public MenuMinigames getMinigameMenu()
 	{
 		return minigameMenu;

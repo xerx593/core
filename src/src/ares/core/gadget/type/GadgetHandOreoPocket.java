@@ -5,7 +5,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +16,7 @@ import org.bukkit.util.Vector;
 
 import src.ares.core.Main;
 import src.ares.core.client.Rank;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.currency.type.AmbrosiaCurrency;
 import src.ares.core.gadget.HandGadget;
 
@@ -35,7 +34,7 @@ public class GadgetHandOreoPocket extends HandGadget
 	{
 		Vector dropsite = player.getLocation().getDirection().normalize().multiply(0.8);
 
-		final Item item = player.getWorld().dropItem(player.getLocation().add(0, 1.5, 0), new CraftedItemStack(Material.COOKIE, "Oreo").addEnchantment(Enchantment.LUCK, 1, false).pack());
+		final Item item = player.getWorld().dropItem(player.getLocation().add(0, 1.5, 0), new CraftedItemStack(Material.COOKIE, "Oreo").glow().build());
 		item.setVelocity(dropsite);
 
 		player.getWorld().playSound(player.getLocation(), Sound.DIG_SAND, 1.0F, 1.3F);

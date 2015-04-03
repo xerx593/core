@@ -9,6 +9,9 @@ public class UpgradeMysteriousOrb extends Upgrade
 {
 	public UpgradeMysteriousOrb()
 	{
-		super("Mysterious Orb", new String[] { ChatColor.GRAY + "Coming soon..." }, new GoldCurrency(1000), Material.DOUBLE_PLANT, 3);
+		super("Mysterious Orb", new String[]
+		{
+			ChatColor.GRAY + "Coming soon..."
+		}, new GoldCurrency(1000), Material.DOUBLE_PLANT, 3);
 	}
 }

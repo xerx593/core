@@ -46,7 +46,7 @@ public abstract class CoreCommand extends Module implements CommandExecutor
 		this.rank = rank;
 		this.usage = usage;
 	}
-	
+
 	/**
 	 * Alternative Constructor
 	 * 
@@ -98,7 +98,7 @@ public abstract class CoreCommand extends Module implements CommandExecutor
 				return true;
 
 			this.client = new Client((Player) sender);
-			
+
 			if (disabled)
 			{
 				client.sendMessage(getModuleName(), "That command is disabled.");
@@ -142,7 +142,7 @@ public abstract class CoreCommand extends Module implements CommandExecutor
 
 		return false;
 	}
-	
+
 	public void setDisabled(boolean disabled)
 	{
 		this.disabled = disabled;

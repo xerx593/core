@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 
 import src.ares.core.Main;
 import src.ares.core.common.Module;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.common.util.Chat;
 
 /**
@@ -44,7 +44,7 @@ public abstract class Menu extends Module
 	public Menu(Material menuDisplay, String menuName, int menuSlots)
 	{
 		super("Menu");
-		display = new CraftedItemStack(menuDisplay, menuName).pack();
+		display = new CraftedItemStack(menuDisplay, menuName).build();
 
 		material = menuDisplay;
 		name = menuName;

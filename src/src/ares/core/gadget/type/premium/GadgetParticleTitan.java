@@ -19,7 +19,7 @@ public class GadgetParticleTitan extends ParticleGadget
 		super("Titan Particle", Material.WOOL, Rank.TITAN);
 		setData((byte) 1);
 	}
-	
+
 	public void useParticleGadget(Player player)
 	{
 		int task = new GadgetParticleFlameRingAction(player).runTaskTimer(Main.getPlugin(), 0L, 1L).getTaskId();

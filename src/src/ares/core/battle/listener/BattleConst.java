@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.inventory.ItemStack;
 
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 
 public class BattleConst
 {
@@ -19,10 +19,10 @@ public class BattleConst
 	public static final int MAX_DEATH_OUT_TIME = 5;
 
 	public static final int MIN_DEATH_OUT_TIME = 1;
-	
+
 	public static final int FEATHER_SLOT = 8;
 
-	public static final ItemStack FEATHER = new CraftedItemStack(Material.FEATHER, "Back to Hub").pack();
+	public static final ItemStack FEATHER = new CraftedItemStack(Material.FEATHER, "Back to Hub").build();
 
 	public static final Sound PROTECTION_SOUND = Sound.NOTE_BASS;
 

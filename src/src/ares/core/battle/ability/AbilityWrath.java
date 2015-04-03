@@ -7,7 +7,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
 import src.ares.core.battle.kit.Kit;
-import src.ares.core.common.Cooldown;
+import src.ares.core.common.cooldown.Cooldown;
 
 public class AbilityWrath extends Ability
 {

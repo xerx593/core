@@ -32,7 +32,7 @@ public class Reward
 
 	public int goldReward(int min, int max)
 	{
-		int range = random.nextInt(min) + max;
+		int range = random.nextInt(max) + min;
 
 		if (onlineClient != null)
 		{
@@ -48,7 +48,7 @@ public class Reward
 
 	public int ambrosiaReward(int min, int max)
 	{
-		int range = random.nextInt(min) + max;
+		int range = random.nextInt(max) + min;
 
 		if (onlineClient != null)
 		{

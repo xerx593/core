@@ -9,7 +9,7 @@ import src.ares.core.Main;
 import src.ares.core.client.Client;
 import src.ares.core.client.Rank;
 import src.ares.core.common.Module;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.common.util.Chat;
 import src.ares.core.currency.ICurrency;
 
@@ -24,8 +24,10 @@ public abstract class Gadget extends Module
 	private Material material;
 	private byte data;
 	private ICurrency currency;
+	private ICurrency sellable;
 	private Rank rank;
 	private GadgetManager manager = GadgetManager.getInstance();
+	private boolean shouldBeOwned = false;
 
 	/**
 	 * Default Constructor
@@ -63,6 +65,22 @@ public abstract class Gadget extends Module
 	public void onDisable(Player player)
 	{};
 
+	public void setShouldBeOwned(boolean shouldBeOwned, ICurrency sellable)
+	{
+		this.shouldBeOwned = shouldBeOwned;
+		this.sellable = sellable;
+	}
+
+	public ICurrency getSellableCost()
+	{
+		return sellable;
+	}
+
+	public boolean getShouldBeOwned()
+	{
+		return shouldBeOwned;
+	}
+
 	/**
 	 * Charges the player with the currency cost provided.
 	 * 
@@ -86,6 +104,15 @@ public abstract class Gadget extends Module
 
 		if (client.compareWith(rank) || client.compareSecondWith(rank))
 		{
+			if (shouldBeOwned)
+			{
+				if (!client.getManager().hasGadgetOwned(this))
+				{
+					client.sendMessage(getModuleName(), "You need to buy this gadget in order to use it.");
+					return;
+				}
+			}
+
 			if (manager.getToggledGadgets().containsKey(player))
 			{
 				if (manager.getToggledGadgets().get(player).equals(this))
@@ -144,10 +171,23 @@ public abstract class Gadget extends Module
 
 	public ItemStack getDisplay()
 	{
-		return new CraftedItemStack(material, ChatColor.GREEN + name, new String[]
+		if (shouldBeOwned)
 		{
-		ChatColor.WHITE + "" + ChatColor.BOLD + currency.getFormatted(), ChatColor.GRAY + "" + ChatColor.BOLD + rank.getName() + "+ Rank"
-		}).setData(data).pack();
+			return new CraftedItemStack(material, ChatColor.GREEN + name, new String[]
+			{
+				ChatColor.WHITE + "Purchase for " + Chat.gold(sellable.getFormatted()),
+				ChatColor.GRAY + "Unlocked with " + rank.getName() + "+ Rank"
+			}).data(data).build();
+
+		}
+		else
+		{
+			return new CraftedItemStack(material, ChatColor.GREEN + name, new String[]
+			{
+			ChatColor.WHITE + "Use for " + Chat.gold(currency.getFormatted()),
+			ChatColor.GRAY + "Unlocked with " + rank.getName() + "+ Rank"
+			}).data(data).build();
+		}
 	}
 
 	public ICurrency getCost()

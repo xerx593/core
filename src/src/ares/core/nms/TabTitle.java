@@ -23,7 +23,10 @@ public class TabTitle
 	private static boolean ClassListEqual(Class<?>[] l1, Class<?>[] l2)
 	{
 		boolean equal = true;
-		if (l1.length != l2.length) { return false; }
+		if (l1.length != l2.length)
+		{
+			return false;
+		}
 		for (int i = 0; i < l1.length; i++)
 		{
 			if (l1[i] != l2[i])
@@ -158,8 +161,17 @@ public class TabTitle
 			Object h = getHandle(p);
 			Object c = getField(h.getClass(), "playerConnection").get(h);
 
-			Object packet = PacketPlayOutTitle.class.getConstructor(new Class[] { PacketPlayOutTitle.class, Integer.TYPE, Integer.TYPE, Integer.TYPE }).newInstance(new Object[] { EnumTitleAction.TIMES, Integer.valueOf(fadeIn), Integer.valueOf(stay), Integer.valueOf(fadeOut) });
-			getMethod(h.getClass(), "sendPacket", new Class[0]).invoke(c, new Object[] { packet });
+			Object packet = PacketPlayOutTitle.class.getConstructor(new Class[]
+			{
+			PacketPlayOutTitle.class, Integer.TYPE, Integer.TYPE, Integer.TYPE
+			}).newInstance(new Object[]
+			{
+			EnumTitleAction.TIMES, Integer.valueOf(fadeIn), Integer.valueOf(stay), Integer.valueOf(fadeOut)
+			});
+			getMethod(h.getClass(), "sendPacket", new Class[0]).invoke(c, new Object[]
+			{
+				packet
+			});
 		}
 		catch (Exception e)
 		{

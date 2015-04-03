@@ -12,7 +12,7 @@ import src.ares.core.punish.TimedPunishment;
 
 public class BanPunishment extends TimedPunishment
 {
-	public BanPunishment(String reason, OfflineClient offender, OfflineClient punisher, double duration)
+	public BanPunishment(String reason, OfflineClient offender, Client punisher, double duration)
 	{
 		super("Ban Punishment", reason, offender, punisher, duration);
 	}

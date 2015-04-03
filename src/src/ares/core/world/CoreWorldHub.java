@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 import src.ares.core.chat.CommunityLinks;
 import src.ares.core.client.Client;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.common.util.Chat;
 import src.ares.core.common.util.UtilPlayer;
 import src.ares.core.gadget.Gadget;
@@ -60,7 +60,7 @@ public class CoreWorldHub extends CoreWorld
 		player.getInventory().setItem(1, menuManager.getMinigameMenu().getDisplay());
 		player.getInventory().setItem(2, menuManager.getBattleInventoryMenu().getDisplay());
 		player.getInventory().setItem(4, menuManager.getHubInventoryMenu().getDisplay());
-		player.getInventory().setItem(6, new CraftedItemStack(Material.NAME_TAG, "Community Links").pack());
+		player.getInventory().setItem(6, new CraftedItemStack(Material.NAME_TAG, "Community Links").build());
 		player.getInventory().setItem(7, menuManager.getSettingsMenu().getDisplay());
 		player.getInventory().setItem(8, menuManager.getProgressMenu().getDisplay(client));
 
@@ -75,7 +75,7 @@ public class CoreWorldHub extends CoreWorld
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
@@ -87,20 +87,20 @@ public class CoreWorldHub extends CoreWorld
 
 		if (item == null)
 			return;
-		
+
 		if (!item.hasItemMeta())
 			return;
-		
+
 		String name = item.getItemMeta().getDisplayName();
 
 		if (name.contains("Community Links") && item.getType() == Material.NAME_TAG)
 		{
 			CommunityLinks.getInstance().printCollection(player);
 		}
-//		else if (name.contains("Minigame Server") && item.getType() == Material.COMPASS)
-//		{
-//			BungeeCord.send(player, "AG-1");
-//		}
+		// else if (name.contains("Minigame Server") && item.getType() == Material.COMPASS)
+		// {
+		// BungeeCord.send(player, "AG-1");
+		// }
 	}
 
 	private void addInventoryItems(Player player)

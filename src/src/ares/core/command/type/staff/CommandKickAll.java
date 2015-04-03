@@ -21,7 +21,7 @@ public class CommandKickAll extends CoreCommand
 	{
 		for (Player player : Bukkit.getOnlinePlayers())
 		{
-			KickPunishment kick = new KickPunishment("Kicked for updates, please re-connect.", new OfflineClient(player.getName()), new OfflineClient(getClient().getPlayer().getName()));
+			KickPunishment kick = new KickPunishment("Kicked for updates, please re-connect.", new OfflineClient(player.getName()), getClient());
 			kick.apply();
 		}
 	}

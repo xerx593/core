@@ -20,7 +20,7 @@ public class EliteListener extends Module
 {
 	private static EliteListener instance = new EliteListener();
 	private FlyCondition flyCondition = FlyCondition.getCondition();
-	
+
 	public static EliteListener getInstance()
 	{
 		return instance;
@@ -35,7 +35,7 @@ public class EliteListener extends Module
 	public void onPlayerMove(PlayerMoveEvent event)
 	{
 		Player player = event.getPlayer();
-		
+
 		if (parkourJumpCheck(player))
 		{
 			player.setFlying(false);
@@ -63,13 +63,13 @@ public class EliteListener extends Module
 			player.getLocation().getWorld().playSound(player.getLocation(), Sound.BAT_TAKEOFF, 1.0F, 1.5F);
 		}
 	}
-	
+
 	private boolean parkourJumpCheck(Player player)
 	{
 		boolean isSurvival = player.getGameMode() == GameMode.SURVIVAL;
 		boolean isOnParkour = UtilLocation.isInsideParkour(player);
 		boolean isFlying = player.isFlying();
-		
+
 		return isSurvival && isOnParkour && isFlying;
 	}
 

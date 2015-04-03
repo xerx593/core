@@ -6,9 +6,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.FireworkEffect;
-import org.bukkit.Sound;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -35,7 +35,7 @@ public class GadgetHandLazerStick extends HandGadget
 		entity.setVelocity(player.getLocation().getDirection().normalize().multiply(3.5));
 
 		player.getWorld().playSound(player.getLocation(), Sound.NOTE_PIANO, 1.0F, 1.5F);
-		
+
 		final int task = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), new Runnable()
 		{
 			@Override

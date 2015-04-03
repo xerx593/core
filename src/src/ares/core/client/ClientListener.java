@@ -83,7 +83,8 @@ public class ClientListener extends Module
 
 					if (ServerStorage.getInstance().isNormalMode())
 						showNormalGreeting(player);
-					else showGreeting(player);
+					else
+						showGreeting(player);
 
 					Title title = new Title("&b" + storage.getServerName(), storage.getServerMode().getDescription(), 2, 3, 2);
 					title.send(player);
@@ -94,7 +95,8 @@ public class ClientListener extends Module
 
 			if (client.getManager().getRank() == Rank.OWNER)
 				event.setJoinMessage(ChatColor.GOLD + "" + ChatColor.BOLD + event.getPlayer().getName() + " joined the server.");
-			else event.setJoinMessage(Chat.raw("&a&l+&7 " + player.getName()));
+			else
+				event.setJoinMessage(Chat.raw("&a&l+&7 " + player.getName()));
 
 			client.unload();
 		}

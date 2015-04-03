@@ -20,8 +20,8 @@ import src.ares.core.client.Client;
 import src.ares.core.client.storage.ClientManager;
 import src.ares.core.common.Module;
 import src.ares.core.common.SoupAddon;
-import src.ares.core.common.item.CraftedArmor;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedArmor;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.world.CoreWorld;
 import src.ares.core.world.WorldManager;
 import src.ares.core.world.WorldType;
@@ -64,8 +64,8 @@ public abstract class Kit extends Module
 		chatColor = kitChatColor;
 		color = kitColor;
 
-		preDisplay = new CraftedArmor(Material.LEATHER_CHESTPLATE, chatColor + name, description, color);
-		display = preDisplay.pack();
+		preDisplay = new CraftedArmor(Material.LEATHER_CHESTPLATE, color, chatColor + name, description);
+		display = preDisplay.build();
 	}
 
 	/**
@@ -145,17 +145,17 @@ public abstract class Kit extends Module
 
 		addEffects(player);
 
-		player.getInventory().setHelmet(new CraftedArmor(Material.LEATHER_HELMET, "Olympus Helmet", new String[] {}, color).setUnbreakable(true).pack());
-		player.getInventory().setChestplate(new CraftedArmor(Material.LEATHER_CHESTPLATE, "Olympus Chestplate", new String[] {}, color).setUnbreakable(true).pack());
-		player.getInventory().setLeggings(new CraftedArmor(Material.LEATHER_LEGGINGS, "Olympus Leggings", new String[] {}, color).setUnbreakable(true).pack());
-		player.getInventory().setBoots(new CraftedArmor(Material.LEATHER_BOOTS, "Olympus Boots", new String[] {}, color).setUnbreakable(true).pack());
+		player.getInventory().setHelmet(new CraftedArmor(Material.LEATHER_HELMET, color, "Olympus Helmet").unbreakable(true).build());
+		player.getInventory().setChestplate(new CraftedArmor(Material.LEATHER_CHESTPLATE, color, "Olympus Chestplate").unbreakable(true).build());
+		player.getInventory().setLeggings(new CraftedArmor(Material.LEATHER_LEGGINGS, color, "Olympus Leggings").unbreakable(true).build());
+		player.getInventory().setBoots(new CraftedArmor(Material.LEATHER_BOOTS, color, "Olympus Boots").unbreakable(true).build());
 
 		fetchUpgrades(client);
 
 		for (ItemStack itemStack : itemStackBag)
 		{
 			player.getInventory().addItem(itemStack);
-			player.getInventory().setItem(8, new CraftedItemStack(Material.FEATHER, "Back to Hub").pack());
+			player.getInventory().setItem(8, new CraftedItemStack(Material.FEATHER, "Back to Hub").build());
 		}
 
 		player.updateInventory();
@@ -173,27 +173,27 @@ public abstract class Kit extends Module
 		int level = manager.getKitLevel(this);
 
 		if (level != 0)
-			preDisplay.setAmount(level);
+			preDisplay.amount(level);
 
 		if (manager.isKitOwned(this))
 		{
-			preDisplay.addEnchantment(Enchantment.LUCK, 0, false);
+			preDisplay.glow();
 
-			preDisplay.setLore(ObjectArrays.concat(description, new String[]
+			preDisplay.lore(ObjectArrays.concat(description, new String[]
 			{
 			"", manager.getKitLevelFormat(this), ChatColor.GREEN + "" + ChatColor.BOLD + "Owned", "", ChatColor.WHITE + "Left-Click:" + ChatColor.GRAY + " to select that kit.", ChatColor.WHITE + "Right-Click:" + ChatColor.GRAY + " to upgrade that kit."
 			}, String.class));
 
-			return preDisplay.pack();
+			return preDisplay.build();
 		}
 		else
 		{
-			preDisplay.setLore(ObjectArrays.concat(description, new String[]
+			preDisplay.lore(ObjectArrays.concat(description, new String[]
 			{
 			"", ChatColor.YELLOW + "" + ChatColor.BOLD + cost + " Gold", ChatColor.DARK_RED + "" + ChatColor.BOLD + "Not Owned", "", ChatColor.WHITE + "Left-Click:" + ChatColor.GRAY + " to select that kit.", ChatColor.WHITE + "Right-Click:" + ChatColor.GRAY + " to upgrade that kit."
 			}, String.class));
 
-			return preDisplay.pack();
+			return preDisplay.build();
 		}
 	}
 

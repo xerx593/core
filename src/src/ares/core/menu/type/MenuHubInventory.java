@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.ItemStack;
 
+import src.ares.core.client.Client;
+import src.ares.core.currency.type.AmbrosiaCurrency;
 import src.ares.core.gadget.Gadget;
 import src.ares.core.gadget.GadgetManager;
 import src.ares.core.gadget.HandGadget;
@@ -16,7 +18,7 @@ public class MenuHubInventory extends Menu
 	private int handGadgetSlot;
 	private int particleGadgetSlot;
 	private int premiumGadgetSlot;
-	
+
 	private GadgetManager manager = GadgetManager.getInstance();
 
 	public MenuHubInventory()
@@ -27,11 +29,22 @@ public class MenuHubInventory extends Menu
 	@Override
 	protected void InventoryClick(InventoryAction action, ItemStack item, Player player)
 	{
+		Client client = new Client(player);
+		
 		for (Gadget gadget : manager.getGadgetBag())
 		{
 			if (item.equals(gadget.getDisplay()))
 			{
-				gadget.enable(player);
+				if (gadget.getShouldBeOwned() && !client.getManager().hasGadgetOwned(gadget))
+				{
+					PurchaseMenuGadget purchase = new PurchaseMenuGadget(gadget, (AmbrosiaCurrency) gadget.getSellableCost());
+					purchase.registerEvents();
+					purchase.ShowPage(player);
+				}
+				else
+				{
+					gadget.enable(player);
+				}
 			}
 		}
 	}
@@ -42,7 +55,7 @@ public class MenuHubInventory extends Menu
 		handGadgetSlot = 11;
 		particleGadgetSlot = 28;
 		premiumGadgetSlot = 32;
-		
+
 		for (Gadget gadget : manager.getGadgetBag())
 		{
 			if (gadget instanceof HandGadget)

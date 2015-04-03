@@ -1,5 +1,6 @@
 package src.ares.core.punish;
 
+import src.ares.core.client.Client;
 import src.ares.core.client.OfflineClient;
 
 /**
@@ -19,7 +20,7 @@ public abstract class TimedPunishment extends Punishment
 	 * @param punisher The punisher.
 	 * @param duration The duration of the punishment in minutes.
 	 */
-	public TimedPunishment(String name, String reason, OfflineClient offender, OfflineClient punisher, double duration)
+	public TimedPunishment(String name, String reason, OfflineClient offender, Client punisher, double duration)
 	{
 		super(name, reason, offender, punisher);
 		this.reason = reason;

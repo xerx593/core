@@ -22,6 +22,7 @@ import src.ares.core.chat.announcement.Announcement;
 import src.ares.core.chat.announcement.AnnouncementManager;
 import src.ares.core.client.ClientListener;
 import src.ares.core.client.StaffListener;
+import src.ares.core.client.premium.EliteListener;
 import src.ares.core.command.CommandManager;
 import src.ares.core.command.RankPermissions;
 import src.ares.core.common.SoupAddon;
@@ -65,7 +66,6 @@ public class Main extends JavaPlugin
 			MenuManager.getInstance().createMenus();
 			GadgetManager.getInstance().createGadgets();
 			PortalManager.getInstance().createPortals();
-			// DetectionManager.getInstance().createDetections();
 			SettingsManager.getInstance().createSettings();
 			CommunityLinks.getInstance().createLinks();
 
@@ -93,7 +93,7 @@ public class Main extends JavaPlugin
 			GadgetManager.getInstance().registerEvents();
 			CurrencyListener.getInstance().registerEvents();
 			SoupAddon.getInstance().registerEvents();
-			// EliteListener.getInstance().registerEvents();
+			EliteListener.getInstance().registerEvents();
 			Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
 			if (Bukkit.getPluginManager().isPluginEnabled("Votifier"))

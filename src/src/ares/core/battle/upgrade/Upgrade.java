@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import src.ares.core.client.Client;
-import src.ares.core.common.item.CraftedItemStack;
+import src.ares.core.common.crafted.CraftedItemStack;
 import src.ares.core.currency.type.GoldCurrency;
 
 import com.google.common.collect.ObjectArrays;
@@ -38,7 +38,7 @@ public class Upgrade
 		type = upgradeDisplay;
 		level = upgradeLevel;
 
-		display = new CraftedItemStack(type, ChatColor.GRAY + name, desc).pack();
+		display = new CraftedItemStack(type, ChatColor.GRAY + name, desc).build();
 	}
 
 	public GoldCurrency getCost()
@@ -58,15 +58,21 @@ public class Upgrade
 
 		if (client.getManager().getUpgradeLevel(this) < getLevel())
 		{
-			detailedDesc = ObjectArrays.concat(desc, new String[] { "", ChatColor.GOLD + "" + ChatColor.BOLD + "Level " + level, ChatColor.RED + "Click to Level Up" }, String.class);
+			detailedDesc = ObjectArrays.concat(desc, new String[]
+			{
+			"", ChatColor.GOLD + "" + ChatColor.BOLD + "Level " + level, ChatColor.RED + "Click to Level Up"
+			}, String.class);
 		}
 		else
 		{
-			detailedDesc = ObjectArrays.concat(desc, new String[] { "", ChatColor.GOLD + "" + ChatColor.BOLD + "Level " + level, ChatColor.RED + "Finished" }, String.class);
+			detailedDesc = ObjectArrays.concat(desc, new String[]
+			{
+			"", ChatColor.GOLD + "" + ChatColor.BOLD + "Level " + level, ChatColor.RED + "Finished"
+			}, String.class);
 		}
 
 		CraftedItemStack display = new CraftedItemStack(type, ChatColor.WHITE + name, detailedDesc);
-		return display.pack();
+		return display.build();
 	}
 
 	public ItemStack getDisplay()

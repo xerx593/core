@@ -16,7 +16,7 @@ public class GadgetHandFirework extends HandGadget
 	}
 
 	@SuppressWarnings("deprecation")
-    @Override
+	@Override
 	public void useHandGadget(Player player)
 	{
 		UtilFirework.random(player.getWorld(), player.getTargetBlock(null, 2).getLocation());

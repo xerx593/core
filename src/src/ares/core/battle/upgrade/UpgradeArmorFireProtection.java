@@ -9,6 +9,9 @@ public class UpgradeArmorFireProtection extends Upgrade
 {
 	public UpgradeArmorFireProtection()
 	{
-		super("Armor Fire Protection", new String[] { ChatColor.GRAY + "Equip your armor with", ChatColor.GRAY + "protection against fire damage." }, new GoldCurrency(3000), Material.BOOK, 4);
+		super("Armor Fire Protection", new String[]
+		{
+		ChatColor.GRAY + "Equip your armor with", ChatColor.GRAY + "protection against fire damage."
+		}, new GoldCurrency(3000), Material.BOOK, 4);
 	}
 }
